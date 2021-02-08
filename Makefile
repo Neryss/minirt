@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/02/08 10:31:31 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/02/08 13:34:04 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Iminilibx -g3 -fsanitize=address
 LDFLAGS = -lmlx -lm -framework OpenGL -framework AppKit -L. -lft 
 LIBC = ar rcs
-SRCS =	srcs/main.c 
+SRCS =	srcs/minirt.c srcs/parsing.c srcs/vector.c srcs/checks.c srcs/errors.c \
+		srcs/events.c
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c
