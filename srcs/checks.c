@@ -6,17 +6,17 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:19:09 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/08 13:22:12 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/08 15:32:24 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-int			check_caps_args(t_engine *engine)
+int	check_caps_args(t_engine *engine)
 {
-	int		resolution;
-	int		alight;
-	int		i;
+	int	resolution;
+	int	alight;
+	int	i;
 
 	i = 0;
 	alight = 0;
@@ -46,7 +46,7 @@ void	check_args(int argc, char **argv)
 		close_minirt(-4);
 }
 
-int		check_resolution(t_engine *engine, int save)
+int	check_resolution(t_engine *engine, int save)
 {
 	int	max_x;
 	int	max_y;

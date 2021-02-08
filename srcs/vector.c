@@ -6,13 +6,13 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:50:29 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/08 12:50:48 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/08 15:39:12 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-t_3dvector		vectoradd(t_3dvector v1, t_3dvector v2)
+t_3dvector	vectoradd(t_3dvector v1, t_3dvector v2)
 {
 	t_3dvector	res;
 
@@ -22,7 +22,7 @@ t_3dvector		vectoradd(t_3dvector v1, t_3dvector v2)
 	return (res);
 }
 
-t_3dvector		vectormultiply(t_3dvector v1, double value)
+t_3dvector	vectormultiply(t_3dvector v1, double value)
 {
 	t_3dvector	res;
 
@@ -32,7 +32,7 @@ t_3dvector		vectormultiply(t_3dvector v1, double value)
 	return (res);
 }
 
-t_3dvector		getvector(double x, double y, double z)
+t_3dvector	getvector(double x, double y, double z)
 {
 	t_3dvector	v1;
 
@@ -42,7 +42,7 @@ t_3dvector		getvector(double x, double y, double z)
 	return (v1);
 }
 
-t_3dvector		vectorminus(t_3dvector v1, t_3dvector v2)
+t_3dvector	vectorminus(t_3dvector v1, t_3dvector v2)
 {
 	t_3dvector	res;
 

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:53:06 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/08 14:08:56 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/08 14:59:58 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	get_resolution(char *line, t_engine *engine)
 	engine->size_y = ft_atoi(line + i);
 }
 
-char		**get_map_info(char *path_to_map, t_engine *engine)
+char	**get_map_info(char *path_to_map, t_engine *engine)
 {
 	int		i;
 	char	**map_array;

@@ -6,13 +6,13 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:28:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/08 14:54:03 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/08 14:59:35 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-int		exit_hook(t_engine *engine)
+int	exit_hook(t_engine *engine)
 {
 	(void)engine;
 	printf("closing program");

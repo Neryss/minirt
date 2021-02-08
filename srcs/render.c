@@ -6,19 +6,19 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/08 13:59:31 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/08 15:38:32 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-void		put_pxl(t_engine *engine, int x, int y, int color)
+void	put_pxl(t_engine *engine, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = engine->frame->addr +
-	(y * engine->frame->line_len + x *
-	(engine->frame->bpp / 8));
+	dst = engine->frame->addr
+		+ (y * engine->frame->line_len + x
+			* (engine->frame->bpp / 8));
 	*(unsigned int*)dst = color;
 }
 
