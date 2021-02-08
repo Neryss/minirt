@@ -1,0 +1,8 @@
+*.a
+*.o
+*.out
+miniRT
+*.dylib
+*.swiftdoc
+*.swiftmodule
+.bmp
