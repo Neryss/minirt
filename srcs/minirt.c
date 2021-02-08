@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:12:58 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/08 14:08:47 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/08 14:56:11 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	main(int argc, char **argv)
 	start_init(argv[1], &engine, save);
 	if (!init_frame(&engine))
 		close_minirt(1);
+	mlx_key_hook(engine.win, key_press, &engine);
 	mlx_hook(engine.win, 17, 0, exit_hook, &engine);
 	mlx_loop(engine.mlx);
 	return (0);

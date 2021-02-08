@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/08 13:49:58 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/08 14:57:58 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,12 @@ int			check_caps_args(t_engine *engine);
 int			exit_hook(t_engine *engine);
 void		check_args(int argc, char **argv);
 void		close_minirt(int error);
+void		clean_close(t_engine *engine);
 char		**get_map_info(char *path_to_map, t_engine *engine);
 void		put_pxl(t_engine *engine, int x, int y, int color);
 void		fill_screen(t_engine *engine);
+int			key_press(int key, t_engine *engine);
+int			exit_hook(t_engine *engine);
 
 t_3dvector		vectoradd(t_3dvector v1, t_3dvector v2);
 t_3dvector		vectormultiply(t_3dvector v1, double value);
