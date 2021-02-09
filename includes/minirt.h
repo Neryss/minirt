@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 11:02:52 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 11:34:53 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,17 @@ typedef struct s_sphere
 
 typedef struct s_plane
 {
-	t_3dvector	pos;
-	t_3dvector	rot;
+	t_3dvector	origin;
+	t_3dvector	normal;
 	t_rgb		rgb;
 }				t_plane;
+
+typedef struct s_light
+{
+	t_3dvector	pos;
+	double		intensity;
+	t_rgb		color;
+}				t_light;
 
 typedef struct	s_square
 {
@@ -110,6 +117,8 @@ int			key_press(int key, t_engine *engine);
 int			exit_hook(t_engine *engine);
 void		init_engine(t_engine *engine);
 void		add_sphere(t_list **lst, char *file);
+void		add_light(t_list **lst, char *file);
+void		add_plane(t_list **lst, char *file);
 void		get_scene(t_engine *engine);
 void		init_headers(unsigned int *headers
 , t_engine *engine, int extrabytes);
