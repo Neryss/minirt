@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 11:34:09 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 15:31:04 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	add_plane(t_list **lst, char *file)
 		close_minirt("Error while parsing the scene\n");
 	plane->origin = parse_vector(&file);
 	plane->normal = parse_vector(&file);
+	plane->normal = vectormultiply(plane->normal, 90 * M_PI);
+	plane->normal = vectordivide(plane->normal, 180);
 	plane->rgb = ft_get_rgb(&file);
 	new = ft_lstnew(plane);
 	if (!new)
@@ -65,6 +67,24 @@ void	add_light(t_list **lst, char *file)
 	ft_lstadd_back(lst, new);
 }
 
+void	add_camera(t_list **lst, char *line)
+{
+	t_camera	*camera;
+	t_list		*new;
+
+	camera = malloc(sizeof(t_camera));
+	if (!camera)
+		close_minirt("Error while parsing the scene\n");
+	camera->pos = parse_vector(&line);
+	camera->fov = ft_atof(line) * M_PI / 180;
+	line += ft_atof_len(line);
+	camera->rot = parse_vector(&line);
+	new = ft_lstnew(camera);
+	if (!new)
+		close_minirt("Error while parsing the scene\n");
+	ft_lstadd_back(lst, new);
+}
+
 void	get_scene(t_engine *engine)
 {
 	t_list	*list;
@@ -80,6 +100,31 @@ void	get_scene(t_engine *engine)
 			add_plane(&engine->scene->planes, engine->file[i]);
 		if (engine->file[i][0] == 'l')
 			add_light(&engine->scene->lights, engine->file[i]);
+		if (engine->file[i][0] == 'c')
+			add_camera(&engine->scene->cams, engine->file[i]);
 		i++;
 	}
+}
+
+t_light	*create_light(t_3dvector pos, double intensity, t_rgb color)
+{
+	t_light	*light;
+
+	if (!(light = malloc(sizeof(t_light))))
+		return (NULL);
+	light->pos = pos;
+	light->intensity = intensity;
+	light->color = color;
+	return (light);
+}
+
+t_ray			*create_ray(t_3dvector pos, t_3dvector dir)
+{
+	t_ray		*ray;
+
+	if (!(ray = malloc(sizeof(t_ray))))
+		return (NULL);
+	ray->origin = pos;
+	ray->direction = dir;
+	return (ray);
 }

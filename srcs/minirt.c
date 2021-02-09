@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:12:58 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 11:35:10 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 15:34:53 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 		get_save(&engine, "save.bmp");
 		close_minirt("");
 	}
+	engine.camera = engine.scene->cams->content;
 	mlx_key_hook(engine.win, key_press, &engine);
 	mlx_hook(engine.win, 17, 0, exit_hook, &engine);
 	mlx_loop_hook(engine.mlx, call_render, &engine);

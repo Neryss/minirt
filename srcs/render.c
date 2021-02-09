@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 11:11:27 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 15:21:43 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,48 @@ void	fill_screen(t_engine *engine)
 	}
 }
 
+void	do_raytracing(t_engine *engine)
+{
+	int	x;
+	int	y;
+	t_ray	*ray;
+
+	x = 0;
+	y = 0;
+	while (y < engine->size_y)
+	{
+		while (x < engine->size_x)
+		{
+			ray = create_ray(engine->camera->pos,
+			getvector(x - engine->size_x
+			/ 2, engine->size_y / 2 - y,
+			(engine->size_y / 2) / tan(engine->camera->fov / 2)));
+			closest_inter(engine, ray);
+			x++;
+			free(ray);
+		}
+		x = 0;
+		y++;
+	}
+}
+
+t_hit	*closest_inter(t_engine *engine, t_ray *ray)
+{
+	t_hit	*hit;
+
+	hit = malloc(sizeof(t_hit));
+	if (!hit)
+		close_minirt("Error during malloc");
+	hit->dist = INFINITY;
+	raytrace_spheres(engine, hit, ray);
+	return (hit);
+}
+
 void	render(t_engine *engine)
 {
 	mlx_clear_window(engine->mlx, engine->win);
 	fill_screen(engine);
+	do_raytracing(engine);
 	mlx_put_image_to_window(engine->mlx, engine->win, engine->frame->img, 0, 0);
 	mlx_do_sync(engine->mlx);
 }

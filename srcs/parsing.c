@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:53:06 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/08 14:59:58 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 13:25:31 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	**get_map_info(char *path_to_map, t_engine *engine)
 	int		i;
 	char	**map_array;
 
-	printf("yo\n");
 	map_array = read_map(path_to_map);
 	i = 0;
 	while (map_array[i])

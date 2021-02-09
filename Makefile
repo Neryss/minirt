@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/02/09 11:01:22 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/02/09 15:32:16 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ LDFLAGS = -lmlx -lm -framework OpenGL -framework AppKit -L. -lft
 LIBC = ar rcs
 SRCS =	srcs/minirt.c srcs/parsing.c srcs/vector.c srcs/checks.c srcs/errors.c \
 		srcs/events.c srcs/window.c srcs/inits.c srcs/objects.c srcs/getters.c \
-		srcs/save.c srcs/utils.c srcs/render.c
+		srcs/save.c srcs/utils.c srcs/render.c srcs/raytrace_sphere.c srcs/operations.c
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c
