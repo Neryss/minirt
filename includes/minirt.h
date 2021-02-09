@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 10:46:13 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 11:02:52 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,16 @@ int			exit_hook(t_engine *engine);
 void		init_engine(t_engine *engine);
 void		add_sphere(t_list **lst, char *file);
 void		get_scene(t_engine *engine);
+void		init_headers(unsigned int *headers
+, t_engine *engine, int extrabytes);
+void		write_headers(int outfile, unsigned int *headers);
+void		get_save(t_engine *engine, char *filename);
+void		write_custom(int fd, unsigned int val);
+int			get_pixel_color(t_engine *engine, int x, int y);
+void		imgcpy(int fd, int extrabites, t_engine *engine);
+void		render(t_engine *engine);
+int			call_render(t_engine *engine);
+
 t_rgb		ft_get_rgb(char **line);
 t_3dvector		parse_vector(char **line);
 t_3dvector		vectoradd(t_3dvector v1, t_3dvector v2);

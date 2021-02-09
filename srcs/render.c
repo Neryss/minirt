@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 09:57:50 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 11:08:24 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	fill_screen(t_engine *engine)
 	{
 		while (x < engine->size_x)
 		{
-			put_pxl(engine, x, y, ft_rgbtohex(0, 0, 0));
+			put_pxl(engine, x, y, ft_rgbtohex(255, 0, 0));
 			x++;
 		}
 		x = 0;
@@ -45,5 +45,12 @@ void	render(t_engine *engine)
 {
 	mlx_clear_window(engine->mlx, engine->win);
 	fill_screen(engine);
+	mlx_put_image_to_window(engine->mlx, engine->win, engine->frame->img, 0, 0);
 	mlx_do_sync(engine->mlx);
+}
+
+int	call_render(t_engine *engine)
+{
+	render(engine);
+	return (1);
 }
