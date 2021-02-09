@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 15:31:53 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 15:43:18 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_camera
 	t_3dvector	pos;
 	t_3dvector	rot;
 	int			fov;
+	int			id;
 }				t_camera;
 
 typedef struct s_engine
@@ -158,7 +159,8 @@ void		normalize(t_3dvector *v1);
 t_3dvector	get_normalized(t_3dvector vector);
 double		getnorm2(t_3dvector v1);
 double		scalar(t_3dvector v1, t_3dvector v2);
-t_hit	*closest_inter(t_engine *engine, t_ray *ray);
+t_hit		*closest_inter(t_engine *engine, t_ray *ray);
+void		change_cam(t_engine *engine);
 
 t_rgb		ft_get_rgb(char **line);
 t_3dvector	parse_vector(char **line);

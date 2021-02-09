@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 15:31:04 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/09 16:11:06 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,16 @@ void	add_camera(t_list **lst, char *line)
 {
 	t_camera	*camera;
 	t_list		*new;
+	static int	id;
 
 	camera = malloc(sizeof(t_camera));
 	if (!camera)
 		close_minirt("Error while parsing the scene\n");
 	camera->pos = parse_vector(&line);
-	camera->fov = ft_atof(line) * M_PI / 180;
-	line += ft_atof_len(line);
+	// line += ft_atof_len(line);
 	camera->rot = parse_vector(&line);
+	camera->fov = ft_atof(line) * M_PI / 180;
+	camera->id = id++;
 	new = ft_lstnew(camera);
 	if (!new)
 		close_minirt("Error while parsing the scene\n");
@@ -94,6 +96,7 @@ void	get_scene(t_engine *engine)
 	i = 0;
 	while (engine->file[i])
 	{
+		printf("yo\n");
 		if (ft_startwith(engine->file[i], "sp"))
 			add_sphere(&engine->scene->spheres, engine->file[i]);
 		if (ft_startwith(engine->file[i], "pl"))
