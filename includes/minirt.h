@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 14:43:15 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 16:14:02 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_scene
 	t_list		*lights;
 	t_list		*spheres;
 	t_list		*planes;
+	t_list		*disk;
 	t_alight	alight;
 }				t_scene;
 
@@ -104,6 +105,13 @@ typedef struct s_plane
 	t_rgb		rgb;
 }				t_plane;
 
+typedef struct s_disk
+{
+	t_3dvector	origin;
+	t_3dvector	normal;
+	double		diameter;
+	t_rgb		rgb;
+}				t_disk;
 
 typedef struct s_light
 {
@@ -182,6 +190,7 @@ double		distance(t_3dvector p1, t_3dvector p2);
 int			imax(int a, int b);
 double	ft_dmax(double a, double b);
 void	raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
+void	raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
 int	imin(int a, int b);
 
 t_rgb		ft_get_rgb(char **line);

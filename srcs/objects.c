@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 15:36:20 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 16:14:51 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,29 @@ void	add_camera(t_list **lst, char *line)
 	ft_lstadd_back(lst, new);
 }
 
+void	add_disk(t_list **lst, char *line)
+{
+	t_disk	*disk;
+	t_list	*new;
+
+	disk = malloc(sizeof(t_disk));
+	if (!disk)
+		close_minirt("Error while parsing the scene\n");
+	disk->origin = parse_vector(&line);
+	disk->normal = parse_vector(&line);
+	disk->normal.x = to_rad(90 * disk->normal.x);
+	disk->normal.y = to_rad(90 * disk->normal.y);
+	disk->normal.z = to_rad(90 * disk->normal.z);
+	normalize(&disk->normal);
+	disk->diameter = ft_atof(line);
+	line += ft_atof_len(line);
+	disk->rgb = ft_get_rgb(&line);
+	new = ft_lstnew(disk);
+	if (!new)
+		close_minirt("Error while parsing the scene\n");
+	ft_lstadd_back(lst, new);
+}
+
 static void	add_alight(t_engine *engine, char *line)
 {
 	engine->scene->alight.intensity = ft_atof(line);
@@ -120,6 +143,8 @@ void	get_scene(t_engine *engine)
 			add_camera(&engine->scene->cams, engine->file[i] + 1);
 		if (engine->file[i][0] == 'A')
 			add_alight(engine, engine->file[i] + 1);
+		if (ft_startwith(engine->file[i], "ds"))
+			add_disk(&engine->scene->disk, engine->file[i] + 2);
 		i++;
 	}
 }

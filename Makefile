@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/02/10 14:44:24 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/02/10 16:14:19 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ LIBC = ar rcs
 SRCS =	srcs/minirt.c srcs/parsing.c srcs/vector.c srcs/checks.c srcs/errors.c \
 		srcs/events.c srcs/window.c srcs/inits.c srcs/objects.c srcs/getters.c \
 		srcs/save.c srcs/utils.c srcs/render.c srcs/raytrace_sphere.c srcs/operations.c \
-		srcs/rgb.c srcs/operations2.c srcs/raytrace_plane.c
+		srcs/rgb.c srcs/operations2.c srcs/raytrace_plane.c srcs/raytrace_disk.c
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c
