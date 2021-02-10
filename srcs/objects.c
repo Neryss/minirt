@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 16:11:06 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 10:07:13 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,8 @@ void	add_camera(t_list **lst, char *line)
 
 void	get_scene(t_engine *engine)
 {
-	t_list	*list;
 	int		i;
 
-	list = NULL;
 	i = 0;
 	while (engine->file[i])
 	{
