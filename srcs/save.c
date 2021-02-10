@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:53:42 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 10:54:03 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 14:58:35 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ void				get_save(t_engine *engine, char *filename)
 	if (extrabytes == 4)
 		extrabytes = 0;
 	init_headers(headers, engine, extrabytes);
+	render(engine);
 	outfile = open(filename, O_WRONLY | O_APPEND | O_CREAT | O_TRUNC, 0775);
 	write(outfile, "BM", 2);
 	write_headers(outfile, headers);
-	render(engine);
 	imgcpy(outfile, extrabytes, engine);
 	close(outfile);
 }

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 14:03:27 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 14:29:01 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 14:36:09 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,6 @@ bool	secdegsolve(t_3dvector point, double *t1, double *t2)
 	if (*t1 > *t2)
 		ft_swap(t1, t2);
 	return (true);
-}
-
-static double	ft_dmin(double a, double b)
-{
-	if (a < b)
-		return (a);
-	else
-		return (b);
 }
 
 bool	inter_sphere(const t_ray ray, const t_sphere sphere, t_hit *hit)

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:59:49 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 14:09:13 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 14:35:53 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ int	imin(int a, int b)
 double	ft_dmax(double a, double b)
 {
 	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+double	ft_dmin(double a, double b)
+{
+	if (a < b)
 		return (a);
 	else
 		return (b);

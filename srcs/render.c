@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 14:31:06 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 15:26:32 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	handle_lights(t_engine *engine, t_hit *hit)
 	{
 		light = list->content;
 		color = create_rgb(0, 0, 0);
-		ray = create_ray(hit->pos, get_normalized(vectorminus(light->pos, hit->pos)));
+		ray = create_ray(hit->pos, vectorminus(light->pos, hit->pos));
 		obs_hit = closest_inter(engine, ray);
 		if (distance(hit->pos, light->pos) < obs_hit->dist)
 		{
@@ -98,7 +98,11 @@ void	do_raytracing(t_engine *engine)
 			(engine->size_y / 2) / tan((engine->camera->fov * M_PI / 180) / 2)));
 			hit = closest_inter(engine, ray);
 			if (hit->dist < INFINITY)
+			{
+				if (scalar(hit->normal, ray->direction) >= 0)
+					hit->normal = vectormultiply(hit->normal, -1);
 				handle_lights(engine, hit);
+			}
 			// printf("[%f]\n", hit->dist);
 			put_pxl(engine, x, y, 0x000000);
 			put_pxl(engine, x, y, ft_rgbtohex(hit->color.r, hit->color.g, hit->color.b));
@@ -131,6 +135,7 @@ t_hit	*closest_inter(t_engine *engine, t_ray *ray)
 	hit->dist = INFINITY;
 	hit->color = create_rgb(0, 0, 0);
 	raytrace_spheres(engine, hit, ray);
+	raytrace_planes(engine, hit, ray);
 	return (hit);
 }
 

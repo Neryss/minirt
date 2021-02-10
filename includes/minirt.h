@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 14:09:22 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 14:43:15 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "../libft/libft.h"
 
 # define ALBEDO 0.4
+# define EPSILON 0.001
 
 typedef struct s_3dvector
 {
@@ -136,6 +137,7 @@ typedef struct	s_triangle
 	t_rgb		rbg;
 }				t_triangle;
 
+double	ft_dmin(double a, double b);
 int			start_init(char *map_path, t_engine *engine, int save);
 int			init_frame(t_engine *engine);
 int			check_resolution(t_engine *engine, int save);
@@ -179,6 +181,7 @@ t_rgb		mult_rgb_rgb(t_rgb r1, t_rgb r2);
 double		distance(t_3dvector p1, t_3dvector p2);
 int			imax(int a, int b);
 double	ft_dmax(double a, double b);
+void	raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
 int	imin(int a, int b);
 
 t_rgb		ft_get_rgb(char **line);

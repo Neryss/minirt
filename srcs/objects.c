@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 14:26:27 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 15:36:20 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	add_sphere(t_list **lst, char *file)
 	ft_lstadd_back(lst, new);
 }
 
+static double to_rad(double value)
+{
+	return (value * M_PI * .5);
+}
+
 void	add_plane(t_list **lst, char *file)
 {
 	t_plane	*plane;
@@ -40,8 +45,12 @@ void	add_plane(t_list **lst, char *file)
 		close_minirt("Error while parsing the scene\n");
 	plane->origin = parse_vector(&file);
 	plane->normal = parse_vector(&file);
-	plane->normal = vectormultiply(plane->normal, 90 * M_PI);
-	plane->normal = vectordivide(plane->normal, 180);
+	// plane->normal = vectormultiply(plane->normal, 90 * M_PI);
+	// plane->normal = vectordivide(plane->normal, 180);
+	plane->normal.x = to_rad(90 * plane->normal.x);
+	plane->normal.y = to_rad(90 * plane->normal.y);
+	plane->normal.z = to_rad(90 * plane->normal.z);
+	normalize(&plane->normal);
 	plane->rgb = ft_get_rgb(&file);
 	new = ft_lstnew(plane);
 	if (!new)
@@ -102,15 +111,15 @@ void	get_scene(t_engine *engine)
 	while (engine->file[i])
 	{
 		if (ft_startwith(engine->file[i], "sp"))
-			add_sphere(&engine->scene->spheres, engine->file[i]);
+			add_sphere(&engine->scene->spheres, engine->file[i] + 2);
 		if (ft_startwith(engine->file[i], "pl"))
-			add_plane(&engine->scene->planes, engine->file[i]);
+			add_plane(&engine->scene->planes, engine->file[i] + 2);
 		if (engine->file[i][0] == 'l')
-			add_light(&engine->scene->lights, engine->file[i]);
+			add_light(&engine->scene->lights, engine->file[i] + 1);
 		if (engine->file[i][0] == 'c')
-			add_camera(&engine->scene->cams, engine->file[i]);
+			add_camera(&engine->scene->cams, engine->file[i] + 1);
 		if (engine->file[i][0] == 'A')
-			add_alight(engine, engine->file[i]);
+			add_alight(engine, engine->file[i] + 1);
 		i++;
 	}
 }
@@ -134,6 +143,6 @@ t_ray			*create_ray(t_3dvector pos, t_3dvector dir)
 	if (!(ray = malloc(sizeof(t_ray))))
 		return (NULL);
 	ray->origin = pos;
-	ray->direction = dir;
+	ray->direction = get_normalized(dir);
 	return (ray);
 }
