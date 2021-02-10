@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 14:03:27 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 11:21:46 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 14:10:03 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,9 @@ void	raytrace_spheres(t_engine *engine, t_hit *hit, t_ray *ray)
 		sphere = new->content;
 		if (inter_sphere(*ray, *sphere, hit))
 		{
-			printf("sphere inter\n");
-			hit->color = ((t_sphere *)new->content)->rgb;
+			hit->color = sphere->rgb;
+			printf("sphere color = %d\n", sphere->rgb.r);
+			
 		}
 		new = new->next;
 	}

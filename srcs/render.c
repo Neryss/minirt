@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 13:51:50 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 14:15:25 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	handle_lights(t_engine *engine, t_hit *hit)
 	double	normal_dot_light;
 
 	list = engine->scene->lights;
+	diffuse = create_rgb(0, 0, 0);
 	while (list)
 	{
 		light = list->content;
@@ -61,20 +62,22 @@ void	handle_lights(t_engine *engine, t_hit *hit)
 		if (distance(hit->pos, light->pos) < obs_hit->dist)
 		{
 			normal_dot_light = ft_dmax(scalar(hit->normal,
-				ray->direction), 0) * (10 * light->intensity)
+				ray->direction), 0) * (5 * light->intensity)
 			/ distance(hit->pos, light->pos);
 			color = mult_rgb_double(add_rgb_rgb(mult_rgb_double(
 					light->color,
 						normal_dot_light), color), ALBEDO);
 			diffuse = add_rgb_rgb(diffuse, color);
 		}
+		free(obs_hit);
 		list = list->next;
 	}
+	printf("%f\n", engine->scene->alight.intensity);
 	hit->color = mult_rgb_rgb(add_rgb_rgb(mult_rgb_double(engine->scene->alight.color
 		, engine->scene->alight.intensity), diffuse), hit->color);
-	hit->color.r = imax(hit->color.r, 255);
-	hit->color.g = imax(hit->color.g, 255);
-	hit->color.b = imax(hit->color.b, 255);
+	hit->color.r = imin(hit->color.r, 255);
+	hit->color.g = imin(hit->color.g, 255);
+	hit->color.b = imin(hit->color.b, 255);
 }
 
 void	do_raytracing(t_engine *engine)
