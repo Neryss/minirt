@@ -1,37 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 10:59:49 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 13:48:43 by ckurt            ###   ########lyon.fr   */
+/*   Created: 2021/02/10 12:43:18 by ckurt             #+#    #+#             */
+/*   Updated: 2021/02/10 12:44:06 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-void	write_custom(int fd, unsigned int val)
+double	distance(t_3dvector p1, t_3dvector p2)
 {
-	char	tmp;
-
-	tmp = val;
-	write(fd, &tmp, 1);
-}
-
-int	imax(int a, int b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
-
-double	ft_dmax(double a, double b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
+	return (sqrt(pow(p2.x - p1.x, 2) + pow(p2.y - p1.y, 2)
+			+ pow(p2.z - p1.z, 2)));
 }

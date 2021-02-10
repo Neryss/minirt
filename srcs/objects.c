@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 11:20:42 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 13:41:04 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ void	add_camera(t_list **lst, char *line)
 	ft_lstadd_back(lst, new);
 }
 
+static void	add_alight(t_engine *engine, char *line)
+{
+	engine->scene->alight.intensity = ft_atof(line);
+	line += ft_atof_len(line);
+	engine->scene->alight.color = ft_get_rgb(&line);
+}
+
 void	get_scene(t_engine *engine)
 {
 	int		i;
@@ -102,6 +109,8 @@ void	get_scene(t_engine *engine)
 			add_light(&engine->scene->lights, engine->file[i]);
 		if (engine->file[i][0] == 'c')
 			add_camera(&engine->scene->cams, engine->file[i]);
+		if (engine->file[i][0] == 'A')
+			add_alight(engine, engine->file[i]);
 		i++;
 	}
 }

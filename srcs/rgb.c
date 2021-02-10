@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/09 10:59:49 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 13:48:43 by ckurt            ###   ########lyon.fr   */
+/*   Created: 2021/02/10 13:17:01 by ckurt             #+#    #+#             */
+/*   Updated: 2021/02/10 13:30:05 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-void	write_custom(int fd, unsigned int val)
+t_rgb	mult_rgb_double(t_rgb rgb, double value)
 {
-	char	tmp;
+	t_rgb color;
 
-	tmp = val;
-	write(fd, &tmp, 1);
+	color = create_rgb(rgb.r * value, rgb.g * value, rgb.b * value);
+	return (color);
 }
 
-int	imax(int a, int b)
+t_rgb	mult_rgb_rgb(t_rgb r1, t_rgb r2)
 {
-	if (a > b)
-		return (a);
-	else
-		return (b);
+	t_rgb	res;
+
+	res = create_rgb(r1.r * (r2.r / 255.), r1.g * (r2.g / 255.), r1.b * (r2.b / 255.));
+	return (res);
 }
 
-double	ft_dmax(double a, double b)
+t_rgb	add_rgb_rgb(t_rgb c1, t_rgb c2)
 {
-	if (a > b)
-		return (a);
-	else
-		return (b);
+	t_rgb	res;
+
+	res = create_rgb(c1.r + c2.r, c1.g + c2.g, c1.b + c2.b);
+	return (res);
 }

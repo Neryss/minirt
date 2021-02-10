@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 11:25:43 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 13:48:45 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <math.h>
 # include <stdbool.h>
 # include "../libft/libft.h"
+
+# define ALBEDO 0.4
 
 typedef struct s_3dvector
 {
@@ -38,12 +40,19 @@ typedef struct s_image
 	int			endian;
 }				t_frame;
 
+typedef struct s_alight
+{
+	double		intensity;
+	t_rgb		color;
+}				t_alight;
+
 typedef struct s_scene
 {
 	t_list		*cams;
 	t_list		*lights;
 	t_list		*spheres;
 	t_list		*planes;
+	t_alight	alight;
 }				t_scene;
 
 typedef struct s_camera
@@ -93,6 +102,7 @@ typedef struct s_plane
 	t_3dvector	normal;
 	t_rgb		rgb;
 }				t_plane;
+
 
 typedef struct s_light
 {
@@ -162,7 +172,13 @@ double		getnorm2(t_3dvector v1);
 double		scalar(t_3dvector v1, t_3dvector v2);
 t_hit		*closest_inter(t_engine *engine, t_ray *ray);
 void		change_cam(t_engine *engine);
-t_rgb	create_rgb(int r, int g, int b);
+t_rgb		create_rgb(int r, int g, int b);
+t_rgb		mult_rgb_double(t_rgb rgb, double value);
+t_rgb		add_rgb_rgb(t_rgb c1, t_rgb c2);
+t_rgb		mult_rgb_rgb(t_rgb r1, t_rgb r2);
+double		distance(t_3dvector p1, t_3dvector p2);
+int			imax(int a, int b);
+double	ft_dmax(double a, double b);
 
 t_rgb		ft_get_rgb(char **line);
 t_3dvector	parse_vector(char **line);
