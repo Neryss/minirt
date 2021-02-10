@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 11:22:31 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 11:26:00 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,17 @@ void	do_raytracing(t_engine *engine)
 	}
 }
 
+t_rgb	create_rgb(int r, int g, int b)
+{
+	t_rgb	rgb;
+
+	rgb.r = r;
+	rgb.g = g;
+	rgb.b = b;
+
+	return (rgb);
+}
+
 t_hit	*closest_inter(t_engine *engine, t_ray *ray)
 {
 	t_hit	*hit;
@@ -77,6 +88,7 @@ t_hit	*closest_inter(t_engine *engine, t_ray *ray)
 	if (!hit)
 		close_minirt("Error during malloc");
 	hit->dist = INFINITY;
+	hit->color = create_rgb(0, 0, 0);
 	raytrace_spheres(engine, hit, ray);
 	return (hit);
 }

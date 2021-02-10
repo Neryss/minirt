@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 11:05:31 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 11:25:43 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,7 @@ double		getnorm2(t_3dvector v1);
 double		scalar(t_3dvector v1, t_3dvector v2);
 t_hit		*closest_inter(t_engine *engine, t_ray *ray);
 void		change_cam(t_engine *engine);
+t_rgb	create_rgb(int r, int g, int b);
 
 t_rgb		ft_get_rgb(char **line);
 t_3dvector	parse_vector(char **line);
