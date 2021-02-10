@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:04:53 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 15:05:03 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 11:05:19 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ t_3dvector		get_normalized(t_3dvector vector)
 	res.y = vector.y;
 	res.z = vector.z;
 	normalize(&res);
+	return (res);
+}
+
+t_3dvector	get_vector(double x, double y, double z)
+{
+	t_3dvector	res;
+
+	res.x = x;
+	res.y = y;
+	res.z = z;
 	return (res);
 }
 

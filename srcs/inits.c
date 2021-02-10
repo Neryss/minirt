@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:09:10 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 10:11:30 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 10:32:10 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	start_init(char *map_path, t_engine *engine, int save)
 	if (!check_caps_args(engine))
 		close_minirt("Error too many unique objects");
 	engine->mlx = mlx_init();
-	printf("{%d}\n", engine->size_x);
 	engine->win = mlx_new_window(
 			engine->mlx, engine->size_x, engine->size_y, map_path);
 	get_scene(engine);
@@ -47,7 +46,6 @@ void	init_engine(t_engine *engine)
 {
 	engine->file = NULL;
 	engine->frame = NULL;
-	engine->mlx = NULL;
 	engine->scene = malloc(sizeof(t_scene));	//idk
 	engine->scene->cams = NULL;
 	engine->scene->spheres = NULL;
@@ -55,5 +53,6 @@ void	init_engine(t_engine *engine)
 	engine->scene->planes = NULL;
 	engine->size_x = 0;
 	engine->size_y = 0;
+	engine->mlx = NULL;
 	engine->win = NULL;
 }

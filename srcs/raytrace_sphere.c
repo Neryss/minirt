@@ -6,52 +6,84 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 14:03:27 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 15:32:38 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 11:21:46 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-static bool	inter_sphere(t_sphere *sp, t_hit *hit, t_ray *ray)
+bool    secdegsolve(t_3dvector point, double *t1, double *t2)
 {
-	t_3dvector	tmp;
-	double		adj;
-	double		d2;
-	double		r2;
-	double		thc;
-	double		t;
-	double		t1;
+    double    discr;
+    double    root;
 
-	tmp = vectorminus(sp->pos, ray->origin);
-	adj = scalar(tmp, ray->origin);
-	d2 = scalar(tmp, tmp) - (adj * adj);
-	r2 = sp->r * sp->r;
-	if (d2 > r2)
-		return (false);
-	thc = sqrt(r2 - d2);
-	t = adj - thc;
-	t1 = adj + thc;
-	if (t < 0.0 && t1 < 0.0)
-		return (false);
-	if (t < t1)
-		adj = t;
+    discr = point.y * point.y - 4 * point.x * point.z;
+    if (discr < 0)
+        return (false);
+    else if (discr == 0)
+    {
+        *t1 = -0.5 * point.y / point.x;
+        *t2 = -0.5 * point.y / point.x;
+    }
+    else
+    {
+        if (point.y > 0)
+            root = -0.5 * (point.y + sqrt(discr));
+        else
+            root = -0.5 * (point.y - sqrt(discr));
+        *t1 = root / point.x;
+        *t2 = point.z / root;
+    }
+    if (*t1 > *t2)
+        ft_swap(t1, t2);
+    return (true);
+}
+
+static double	ft_dmin(double a, double b)
+{
+	if (a < b)
+		return (a);
 	else
-		adj = t1;
-	if (adj > hit->dist)
-		return (false);
-	hit->dist = adj;
-	return (true);
+		return (b);
+}
+
+bool    inter_sphere(const t_ray ray, const t_sphere sphere, t_hit *hit)
+{
+	double		t1;
+	double		t2;
+	t_3dvector	vect;
+
+	vect = vectorminus(ray.origin, sphere.pos);
+	if (!secdegsolve(get_vector(scalar(ray.direction, ray.direction), 2 * scalar(ray.direction, vect),
+			scalar(vect, vect) - pow(sphere.diameter, 2)), &t1, &t2))
+        return (false);
+    if ((t1 < 0 && t2 < 0) || (t1 > hit->dist && t2 > hit->dist))
+        return (false);
+    else if (t1 <= 0)
+        t1 = t2;
+    else if (t2 <= 0)
+        t2 = t1;
+    hit->dist = ft_dmin(t1, t2);
+    hit->pos = vectoradd(ray.origin, vectormultiply(ray.direction, t2));
+    hit->normal = get_normalized(vectorminus(hit->pos, sphere.pos));
+    hit->pos = vectoradd(hit->pos, vectormultiply(hit->normal, 0.001));
+    return (true);
 }
 
 void	raytrace_spheres(t_engine *engine, t_hit *hit, t_ray *ray)
 {
-	t_list	*new;
+	t_list		*new;
+	t_sphere	*sphere;
 
 	new = engine->scene->spheres;
 	while (new)
 	{
-		if (inter_sphere(new->content, hit, ray))
+		sphere = new->content;
+		if (inter_sphere(*ray, *sphere, hit))
+		{
+			printf("sphere inter\n");
 			hit->color = ((t_sphere *)new->content)->rgb;
+		}
 		new = new->next;
 	}
 }

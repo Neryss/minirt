@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 15:55:27 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 11:22:31 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	fill_screen(t_engine *engine)
 	{
 		while (x < engine->size_x)
 		{
-			put_pxl(engine, x, y, ft_rgbtohex(255, 0, 0));
+			put_pxl(engine, x, y, ft_rgbtohex(0, 0, 0));
 			x++;
 		}
 		x = 0;
@@ -49,7 +49,6 @@ void	do_raytracing(t_engine *engine)
 	t_hit	*hit;
 
 	y = 0;
-	printf ("%d\n", engine->size_x);
 	while (y < engine->size_y)
 	{
 		x = 0;
@@ -58,9 +57,11 @@ void	do_raytracing(t_engine *engine)
 			ray = create_ray(engine->camera->pos,
 			getvector(x - engine->size_x
 			/ 2, engine->size_y / 2 - y,
-			(engine->size_y / 2) / tan(engine->camera->fov / 2)));
+			(engine->size_y / 2) / tan((engine->camera->fov * M_PI / 180) / 2)));
 			hit = closest_inter(engine, ray);
+			printf("[%f]\n", hit->dist);
 			put_pxl(engine, x, y, ft_rgbtohex(hit->color.r, hit->color.g, hit->color.b));
+			// put_pxl(engine, x, y, ft_rgbtohex(255, 0, 0));
 			x++;
 			free(ray);
 		}
@@ -84,7 +85,6 @@ void	render(t_engine *engine)
 {
 	mlx_clear_window(engine->mlx, engine->win);
 	fill_screen(engine);
-	printf("oi\n");
 	do_raytracing(engine);
 	mlx_put_image_to_window(engine->mlx, engine->win, engine->frame->img, 0, 0);
 	mlx_do_sync(engine->mlx);
@@ -92,7 +92,6 @@ void	render(t_engine *engine)
 
 int	call_render(t_engine *engine)
 {
-	printf("[%d]\n", engine->size_x);
 	render(engine);
 	return (1);
 }

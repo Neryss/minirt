@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:12:58 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 09:53:31 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 10:32:15 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	main(int argc, char **argv)
 		get_save(&engine, "save.bmp");
 		close_minirt("");
 	}
-	printf("(%d)\n", engine.size_x);
 	mlx_key_hook(engine.win, key_press, &engine);
 	mlx_hook(engine.win, 17, 0, exit_hook, &engine);
 	mlx_loop_hook(engine.mlx, call_render, &engine);

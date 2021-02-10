@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 15:43:18 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/10 11:05:31 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_engine
 typedef struct s_hit
 {
 	t_3dvector	pos;
+	t_3dvector	normal;
 	double		dist;
 	t_rgb		color;
 }				t_hit;
@@ -82,7 +83,7 @@ typedef struct s_ray
 typedef struct s_sphere
 {
 	t_3dvector	pos;
-	double		r;
+	double		diameter;
 	t_rgb		rgb;
 }				t_sphere;
 
@@ -169,5 +170,6 @@ t_3dvector	vectormultiply(t_3dvector v1, double value);
 t_3dvector	getvector(double x, double y, double z);
 t_3dvector	vectorminus(t_3dvector v1, t_3dvector v2);
 t_3dvector	vectordivide(t_3dvector v1, double value);
+t_3dvector	get_vector(double x, double y, double z);
 
 #endif
