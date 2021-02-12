@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 14:52:34 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 15:02:31 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,17 @@ typedef struct	s_triangle
 	t_rgb		rbg;
 }				t_triangle;
 
+typedef struct	s_handler
+{
+	t_ray		*ray;
+	t_hit		*obs_hit;
+	t_list		*list;
+	t_light		*light;
+	t_rgb		color;
+	t_rgb		diffuse;
+	double		normal_dot_light;
+}				t_handler;
+
 double	ft_dmin(double a, double b);
 int			start_init(char *map_path, t_engine *engine, int save);
 int			init_frame(t_engine *engine);
@@ -193,6 +204,7 @@ void	raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
 void	raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
 int	imin(int a, int b);
 void	do_raytracing(t_engine *engine);
+void	set_hit_color(t_hit *hit);
 
 t_rgb		ft_get_rgb(char **line);
 t_3dvector	parse_vector(char **line);

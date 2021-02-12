@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 14:48:13 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 14:49:52 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 15:03:53 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 void	handle_lights(t_engine *engine, t_hit *hit)
 {
-	t_ray	*ray;
-	t_hit	*obs_hit;
-	t_list	*list;
-	t_light	*light;
-	t_rgb	color;
-	t_rgb	diffuse;
-	double	normal_dot_light;
+	t_ray		*ray;
+	t_hit		*obs_hit;
+	t_list		*list;
+	t_light		*light;
+	t_rgb		color;
+	t_rgb		diffuse;
+	double		normal_dot_light;
+	t_handler	obj;
 
-	list = engine->scene->lights;
-	diffuse = create_rgb(0, 0, 0);
+	obj.list = engine->scene->lights;
+	obj.diffuse = create_rgb(0, 0, 0);
 	while (list)
 	{
 		light = list->content;
@@ -45,9 +46,7 @@ void	handle_lights(t_engine *engine, t_hit *hit)
 	}
 	hit->color = mult_rgb_rgb(add_rgb_rgb(mult_rgb_double(engine->scene->alight.color,
 					engine->scene->alight.intensity), diffuse), hit->color);
-	hit->color.r = imin(hit->color.r, 255);
-	hit->color.g = imin(hit->color.g, 255);
-	hit->color.b = imin(hit->color.b, 255);
+	set_hit_color(hit);
 }
 
 void	do_raytracing(t_engine *engine)
