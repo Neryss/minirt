@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:50:29 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 14:43:01 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 14:41:11 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,5 @@ t_3dvector	vectordivide(t_3dvector v1, double value)
 	res.x = v1.x / value;
 	res.y = v1.y / value;
 	res.z = v1.z / value;
-
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:09:10 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 16:15:07 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 14:36:56 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	init_engine(t_engine *engine)
 {
 	engine->file = NULL;
 	engine->frame = NULL;
-	engine->scene = malloc(sizeof(t_scene));	//idk
+	engine->scene = malloc(sizeof(t_scene));
 	engine->scene->cams = NULL;
 	engine->scene->spheres = NULL;
 	engine->scene->lights = NULL;

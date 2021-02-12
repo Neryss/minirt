@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:17:01 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 13:30:05 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 14:49:13 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,14 @@ t_rgb	add_rgb_rgb(t_rgb c1, t_rgb c2)
 
 	res = create_rgb(c1.r + c2.r, c1.g + c2.g, c1.b + c2.b);
 	return (res);
+}
+
+t_rgb	create_rgb(int r, int g, int b)
+{
+	t_rgb	rgb;
+
+	rgb.r = r;
+	rgb.g = g;
+	rgb.b = b;
+	return (rgb);
 }

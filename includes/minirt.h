@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 16:14:02 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 14:52:34 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ double	ft_dmax(double a, double b);
 void	raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
 void	raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
 int	imin(int a, int b);
+void	do_raytracing(t_engine *engine);
 
 t_rgb		ft_get_rgb(char **line);
 t_3dvector	parse_vector(char **line);

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 14:03:27 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 14:36:09 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 14:38:59 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ bool	inter_sphere(const t_ray ray, const t_sphere sphere, t_hit *hit)
 	t_3dvector	vect;
 
 	vect = vectorminus(ray.origin, sphere.pos);
-	if (!secdegsolve(get_vector(scalar(ray.direction, ray.direction), 2 * scalar(ray.direction, vect),
-			scalar(vect, vect) - pow(sphere.diameter, 2)), &t1, &t2))
+	if (!secdegsolve(get_vector(scalar(ray.direction, ray.direction)
+				, 2 * scalar(ray.direction, vect),
+				scalar(vect, vect) - pow(sphere.diameter, 2)), &t1, &t2))
 		return (false);
 	if ((t1 < 0 && t2 < 0) || (t1 > hit->dist && t2 > hit->dist))
 		return (false);

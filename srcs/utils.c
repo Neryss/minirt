@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:59:49 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 14:35:53 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 14:49:38 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ double	ft_dmin(double a, double b)
 		return (a);
 	else
 		return (b);
+}
+
+void	set_hit_color(t_hit *hit)
+{
+	hit->color.r = imin(hit->color.r, 255);
+	hit->color.g = imin(hit->color.g, 255);
+	hit->color.b = imin(hit->color.b, 255);
 }
