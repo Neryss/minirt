@@ -6,11 +6,19 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 14:48:13 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 15:14:38 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 20:14:26 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
+
+static void	init_obj(t_handler *handler, t_hit *hit, t_engine *engine)
+{
+	handler->light = handler->list->content;
+	handler->color = create_rgb(0, 0, 0);
+	handler->ray = create_ray(hit->pos, vectorminus(handler->light->pos, hit->pos));
+	handler->obs_hit = closest_inter(engine, handler->ray);
+}
 
 void	handle_lights(t_engine *engine, t_hit *hit)
 {
@@ -20,30 +28,45 @@ void	handle_lights(t_engine *engine, t_hit *hit)
 	obj.diffuse = create_rgb(0, 0, 0);
 	while (obj.list)
 	{
-		obj.light = obj.list->content;
-		obj.color = create_rgb(0, 0, 0);
-		obj.ray = create_ray(hit->pos, vectorminus(obj.light->pos, hit->pos));
-		obj.obs_hit = closest_inter(engine, obj.ray);
+		init_obj(&obj, hit, engine);
 		if (distance(hit->pos, obj.light->pos) < obj.obs_hit->dist)
 		{
 			obj.normal_dot_light = ft_dmax(scalar(hit->normal,
 						obj.ray->direction), 0) * (10 * obj.light->intensity)
 				/ distance(hit->pos, obj.light->pos);
-			obj.color = mult_rgb_double(add_rgb_rgb(mult_rgb_double(obj.light->color, obj.normal_dot_light), obj.color), ALBEDO);
+			obj.color = mult_rgb_double(add_rgb_rgb(
+						mult_rgb_double(obj.light->color, obj.normal_dot_light),
+						obj.color), ALBEDO);
 			obj.diffuse = add_rgb_rgb(obj.diffuse, obj.color);
 		}
-		free(obj.obs_hit);
 		obj.list = obj.list->next;
+		free(obj.obs_hit);
+		free(obj.ray);
 	}
 	hit->color = mult_rgb_rgb(add_rgb_rgb(mult_rgb_double(engine->scene->alight.color,
 					engine->scene->alight.intensity), obj.diffuse), hit->color);
 	set_hit_color(hit);
 }
 
+static void	draw_pixel(t_engine *engine, int x, int y, t_hit *hit, t_ray *ray)
+{
+	put_pxl(engine, x, y, 0x000000);
+	put_pxl(engine, x, y, ft_rgbtohex(hit->color.r,
+		hit->color.g, hit->color.b));
+	free(ray);
+	free(hit);
+}
+
+void	free_rayhit(t_ray *ray, t_hit *hit)
+{
+	free(ray);
+	free(hit);
+}
+
 void	do_raytracing(t_engine *engine)
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 	t_ray	*ray;
 	t_hit	*hit;
 
@@ -64,11 +87,8 @@ void	do_raytracing(t_engine *engine)
 					hit->normal = vectormultiply(hit->normal, -1);
 				handle_lights(engine, hit);
 			}
-			// printf("[%f]\n", hit->dist);
-			put_pxl(engine, x, y, 0x000000);
-			put_pxl(engine, x, y, ft_rgbtohex(hit->color.r, hit->color.g, hit->color.b));
-			free(ray);
-			free(hit);
+			draw_pixel(engine, x, y, hit, ray);
+			// free(hit);
 			x++;
 		}
 		y++;
