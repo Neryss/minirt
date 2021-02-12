@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 14:48:13 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 15:03:53 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/12 15:14:38 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,29 @@
 
 void	handle_lights(t_engine *engine, t_hit *hit)
 {
-	t_ray		*ray;
-	t_hit		*obs_hit;
-	t_list		*list;
-	t_light		*light;
-	t_rgb		color;
-	t_rgb		diffuse;
-	double		normal_dot_light;
 	t_handler	obj;
 
 	obj.list = engine->scene->lights;
 	obj.diffuse = create_rgb(0, 0, 0);
-	while (list)
+	while (obj.list)
 	{
-		light = list->content;
-		color = create_rgb(0, 0, 0);
-		ray = create_ray(hit->pos, vectorminus(light->pos, hit->pos));
-		obs_hit = closest_inter(engine, ray);
-		if (distance(hit->pos, light->pos) < obs_hit->dist)
+		obj.light = obj.list->content;
+		obj.color = create_rgb(0, 0, 0);
+		obj.ray = create_ray(hit->pos, vectorminus(obj.light->pos, hit->pos));
+		obj.obs_hit = closest_inter(engine, obj.ray);
+		if (distance(hit->pos, obj.light->pos) < obj.obs_hit->dist)
 		{
-			normal_dot_light = ft_dmax(scalar(hit->normal,
-						ray->direction), 0) * (10 * light->intensity)
-				/ distance(hit->pos, light->pos);
-			color = mult_rgb_double(add_rgb_rgb(mult_rgb_double(
-							light->color,
-							normal_dot_light), color), ALBEDO);
-			diffuse = add_rgb_rgb(diffuse, color);
+			obj.normal_dot_light = ft_dmax(scalar(hit->normal,
+						obj.ray->direction), 0) * (10 * obj.light->intensity)
+				/ distance(hit->pos, obj.light->pos);
+			obj.color = mult_rgb_double(add_rgb_rgb(mult_rgb_double(obj.light->color, obj.normal_dot_light), obj.color), ALBEDO);
+			obj.diffuse = add_rgb_rgb(obj.diffuse, obj.color);
 		}
-		free(obs_hit);
-		list = list->next;
+		free(obj.obs_hit);
+		obj.list = obj.list->next;
 	}
 	hit->color = mult_rgb_rgb(add_rgb_rgb(mult_rgb_double(engine->scene->alight.color,
-					engine->scene->alight.intensity), diffuse), hit->color);
+					engine->scene->alight.intensity), obj.diffuse), hit->color);
 	set_hit_color(hit);
 }
 
