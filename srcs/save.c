@@ -6,18 +6,18 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:53:42 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 14:58:35 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:16:41 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minirt.h"
 
-void				init_headers(unsigned int *headers,
-t_engine *engine, int extrabytes)
+void	init_headers(unsigned int *headers
+, t_engine *engine, int extrabytes)
 {
-	int				paddedsize;
+	int	paddedsize;
 
-	paddedsize = ((engine->size_x * 3) + extrabytes) * engine->size_y;
+	paddedsize = ((engine->size_x * 3) + extrabytes) *engine->size_y;
 	headers[0] = paddedsize + 54;
 	headers[1] = 0;
 	headers[2] = 54;
@@ -32,9 +32,9 @@ t_engine *engine, int extrabytes)
 	headers[12] = 0;
 }
 
-void				write_headers(int outfile, unsigned int *headers)
+void	write_headers(int outfile, unsigned int *headers)
 {
-	int				i;
+	int	i;
 
 	i = 0;
 	while (i <= 5)
@@ -42,7 +42,7 @@ void				write_headers(int outfile, unsigned int *headers)
 		write_custom(outfile, headers[i] & 0x000000FF);
 		write_custom(outfile, (headers[i] & 0x0000FF00) >> 8);
 		write_custom(outfile, (headers[i] & 0x00FF0000) >> 16);
-		write_custom(outfile, (headers[i] & (unsigned int)0xFF000000) >> 24);
+		write_custom(outfile, (headers[i] & (unsigned int) 0xFF000000) >> 24);
 		i++;
 	}
 	write_custom(outfile, 1);
@@ -55,12 +55,12 @@ void				write_headers(int outfile, unsigned int *headers)
 		write_custom(outfile, headers[i] & 0x000000FF);
 		write_custom(outfile, (headers[i] & 0x0000FF00) >> 8);
 		write_custom(outfile, (headers[i] & 0x00FF0000) >> 16);
-		write_custom(outfile, (headers[i] & (unsigned int)0xFF000000) >> 24);
+		write_custom(outfile, (headers[i] & (unsigned int) 0xFF000000) >> 24);
 		i++;
 	}
 }
 
-void				get_save(t_engine *engine, char *filename)
+void	get_save(t_engine *engine, char *filename)
 {
 	unsigned int	headers[13];
 	int				outfile;
@@ -74,45 +74,38 @@ void				get_save(t_engine *engine, char *filename)
 	outfile = open(filename, O_WRONLY | O_APPEND | O_CREAT | O_TRUNC, 0775);
 	write(outfile, "BM", 2);
 	write_headers(outfile, headers);
-	imgcpy(outfile, extrabytes, engine);
+	imgcpy(outfile, engine);
 	close(outfile);
 }
 
-int				get_pixel_color(t_engine *engine, int x, int y)
+int	get_pixel_color(t_engine *engine, int x, int y)
 {
-	char			*src;
-	// t_rgb			rgb;
+	char	*src;
 
-	src = engine->frame->addr + (y *
-	(engine->frame->line_len) + x * (engine->frame->bpp / 8));
-	// rgb.b = src[0];
-	// rgb.g = src[1];
-	// rgb.r = src[2];
+	src = engine->frame->addr + (y
+			* (engine->frame->line_len) + x * (engine->frame->bpp / 8));
 	return (*(int *)src);
 }
 
-void				imgcpy(int fd, int extrabites, t_engine *engine)
+void	imgcpy(int fd, t_engine *engine)
 {
-	int				x;
-	int				y;
-	int				i;
-	int				tmp;
-	int			*buffer;
+	int	x;
+	int	y;
+	int	i;
+	int	tmp;
+	int	*buffer;
 
-	(void)extrabites;
 	y = engine->size_y;
 	while (--y >= 0)
 	{
-		if (!(buffer = malloc(engine->size_x * sizeof(int))))
+		buffer = malloc(engine->size_x * sizeof(int));
+		if (!buffer)
 			close_minirt("Malloc error\n");
 		x = 0;
 		i = 0;
 		while (x < engine->size_x)
 		{
 			tmp = get_pixel_color(engine, x, y);
-			// buffer[i++] = tmp.b;
-			// buffer[i++] = tmp.g;
-			// buffer[i++] = tmp.r;
 			buffer[i++] = tmp;
 			x++;
 		}

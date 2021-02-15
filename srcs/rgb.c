@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:17:01 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 14:49:13 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:11:55 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_rgb	mult_rgb_double(t_rgb rgb, double value)
 {
-	t_rgb color;
+	t_rgb	color;
 
 	color = create_rgb(rgb.r * value, rgb.g * value, rgb.b * value);
 	return (color);
@@ -24,7 +24,8 @@ t_rgb	mult_rgb_rgb(t_rgb r1, t_rgb r2)
 {
 	t_rgb	res;
 
-	res = create_rgb(r1.r * (r2.r / 255.), r1.g * (r2.g / 255.), r1.b * (r2.b / 255.));
+	res = create_rgb(r1.r * (r2.r / 255.), r1.g
+			* (r2.g / 255.), r1.b * (r2.b / 255.));
 	return (res);
 }
 

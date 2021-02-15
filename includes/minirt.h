@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 11:10:11 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:17:26 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,7 +182,7 @@ void		write_headers(int outfile, unsigned int *headers);
 void		get_save(t_engine *engine, char *filename);
 void		write_custom(int fd, unsigned int val);
 int			get_pixel_color(t_engine *engine, int x, int y);
-void		imgcpy(int fd, int extrabites, t_engine *engine);
+void		imgcpy(int fd, t_engine *engine);
 void		render(t_engine *engine);
 int			call_render(t_engine *engine);
 t_ray		*create_ray(t_3dvector pos, t_3dvector dir);
