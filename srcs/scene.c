@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 11:08:01 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 13:23:44 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ void	get_scene(t_engine *engine)
 			add_alight(engine, engine->file[i] + 1);
 		if (ft_startwith(engine->file[i], "ds"))
 			add_disk(&engine->scene->disk, engine->file[i] + 2);
+		if (ft_startwith(engine->file[i], "tr"))
+			add_triangle(&engine->scene->triangles, engine->file[i] + 2);
 		i++;
 	}
 }

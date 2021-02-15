@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:09:10 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 14:36:56 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:17:13 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	init_engine(t_engine *engine)
 	engine->scene->lights = NULL;
 	engine->scene->planes = NULL;
 	engine->scene->disk = NULL;
+	engine->scene->triangles = NULL;
 	engine->size_x = 0;
 	engine->size_y = 0;
 	engine->mlx = NULL;

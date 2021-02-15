@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:43:18 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 12:58:12 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 13:13:58 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ double	distance(t_3dvector p1, t_3dvector p2)
 
 void	get_triangle_normal(t_triangle *triangle)
 {
-	t_3dvector a;
-	t_3dvector b;
+	t_3dvector	a;
+	t_3dvector	b;
 
 	a = vectorminus(triangle->v2, triangle->v1);
 	b = vectorminus(triangle->v3, triangle->v1);

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:53:42 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 11:16:41 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 13:13:28 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_headers(unsigned int *headers
 {
 	int	paddedsize;
 
-	paddedsize = ((engine->size_x * 3) + extrabytes) *engine->size_y;
+	paddedsize = engine->size_y * ((engine->size_x * 3) + extrabytes);
 	headers[0] = paddedsize + 54;
 	headers[1] = 0;
 	headers[2] = 54;
