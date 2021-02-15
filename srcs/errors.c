@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:17:54 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 13:29:38 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 14:54:46 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 void	close_minirt(char *error)
 {
-	if (error == 0)
+	if (!ft_strcmp(error, ""))
 		exit(EXIT_SUCCESS);
 	else
 	{
-		if (ft_strcmp(error, ""))
-			printf("%s\n", error);
+		printf("%s\n", error);
 		exit(EXIT_FAILURE);
 	}
 }
