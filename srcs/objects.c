@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 11:08:09 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 12:57:57 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,25 @@ void	add_plane(t_list **lst, char *file)
 	new = ft_lstnew(plane);
 	if (!new)
 		close_minirt("Error while parsing the scene\n");
+	ft_lstadd_back(lst, new);
+}
+
+void	add_triangle(t_list **lst, char *file)
+{
+	t_triangle	*triangle;
+	t_list		*new;
+
+	triangle = malloc(sizeof(t_triangle));
+	if (!triangle)
+		close_minirt("Error while parsing the scene (triangle)\n");
+	triangle->v1 = parse_vector(&file);
+	triangle->v2 = parse_vector(&file);
+	triangle->v3 = parse_vector(&file);
+	triangle->color = ft_get_rgb(&file);
+	get_triangle_normal(triangle);
+	new = ft_lstnew(triangle);
+	if (!new)
+		close_minirt("Error while parsing the scene (triangle)\n");
 	ft_lstadd_back(lst, new);
 }
 

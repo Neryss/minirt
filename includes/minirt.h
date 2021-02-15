@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 11:17:26 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 12:59:37 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,15 @@ typedef struct s_hit
 	t_rgb		color;
 }				t_hit;
 
+typedef struct s_triangle
+{
+	t_3dvector	v1;
+	t_3dvector	v2;
+	t_3dvector	v3;
+	t_3dvector	normal;
+	t_rgb		color;
+}				t_triangle;
+
 typedef struct s_ray
 {
 	t_3dvector	origin;
@@ -137,14 +146,6 @@ typedef struct	s_cylinder
 	t_rgb		rgb;
 }				t_cylinder;
 
-typedef struct	s_triangle
-{
-	t_3dvector	*pos1;
-	t_3dvector	*pos2;
-	t_3dvector	*pos3;
-	t_rgb		rbg;
-}				t_triangle;
-
 typedef struct	s_handler
 {
 	t_ray		*ray;
@@ -156,20 +157,6 @@ typedef struct	s_handler
 	double		normal_dot_light;
 }				t_handler;
 
-double		ft_dmin(double a, double b);
-int			start_init(char *map_path, t_engine *engine, int save);
-int			init_frame(t_engine *engine);
-int			check_resolution(t_engine *engine, int save);
-int			check_caps_args(t_engine *engine);
-int			exit_hook(t_engine *engine);
-void		check_args(int argc, char **argv);
-void		close_minirt(char *error);
-void		clean_close(t_engine *engine);
-char		**get_map_info(char *path_to_map, t_engine *engine);
-void		put_pxl(t_engine *engine, int x, int y, int color);
-void		fill_screen(t_engine *engine);
-int			key_press(int key, t_engine *engine);
-int			exit_hook(t_engine *engine);
 void		init_engine(t_engine *engine);
 void		add_sphere(t_list **lst, char *file);
 void		add_light(t_list **lst, char *file);
@@ -181,39 +168,55 @@ void		init_headers(unsigned int *headers
 void		write_headers(int outfile, unsigned int *headers);
 void		get_save(t_engine *engine, char *filename);
 void		write_custom(int fd, unsigned int val);
-int			get_pixel_color(t_engine *engine, int x, int y);
+void		check_args(int argc, char **argv);
+void		close_minirt(char *error);
+void		clean_close(t_engine *engine);
+void		put_pxl(t_engine *engine, int x, int y, int color);
 void		imgcpy(int fd, t_engine *engine);
 void		render(t_engine *engine);
-int			call_render(t_engine *engine);
-t_ray		*create_ray(t_3dvector pos, t_3dvector dir);
+void		fill_screen(t_engine *engine);
 void		raytrace_spheres(t_engine *engine, t_hit *hit, t_ray *ray);
+void		raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
+void		raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
 void		normalize(t_3dvector *v1);
-t_3dvector	get_normalized(t_3dvector vector);
+void		change_cam(t_engine *engine);
+void		do_raytracing(t_engine *engine);
+void		get_triangle_normal(t_triangle *triangle)
+void		set_hit_color(t_hit *hit);
+char		**get_map_info(char *path_to_map, t_engine *engine);
 double		getnorm2(t_3dvector v1);
 double		scalar(t_3dvector v1, t_3dvector v2);
+double		ft_dmin(double a, double b);
+double		distance(t_3dvector p1, t_3dvector p2);
+double		ft_dmax(double a, double b);
+double		to_rad(double value);
+int			start_init(char *map_path, t_engine *engine, int save);
+int			init_frame(t_engine *engine);
+int			check_resolution(t_engine *engine, int save);
+int			check_caps_args(t_engine *engine);
+int			exit_hook(t_engine *engine);
+int			key_press(int key, t_engine *engine);
+int			exit_hook(t_engine *engine);
+int			get_pixel_color(t_engine *engine, int x, int y);
+int			call_render(t_engine *engine);
+int			imax(int a, int b);
+int			imin(int a, int b);
+t_ray		*create_ray(t_3dvector pos, t_3dvector dir);
 t_hit		*closest_inter(t_engine *engine, t_ray *ray);
-void		change_cam(t_engine *engine);
 t_rgb		create_rgb(int r, int g, int b);
 t_rgb		mult_rgb_double(t_rgb rgb, double value);
 t_rgb		add_rgb_rgb(t_rgb c1, t_rgb c2);
 t_rgb		mult_rgb_rgb(t_rgb r1, t_rgb r2);
-double		distance(t_3dvector p1, t_3dvector p2);
-int			imax(int a, int b);
-double		ft_dmax(double a, double b);
-void		raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
-void		raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
-int			imin(int a, int b);
-void		do_raytracing(t_engine *engine);
-void		set_hit_color(t_hit *hit);
-double		to_rad(double value);
-
 t_rgb		ft_get_rgb(char **line);
+
+t_3dvector	get_normalized(t_3dvector vector);
 t_3dvector	parse_vector(char **line);
 t_3dvector	vectoradd(t_3dvector v1, t_3dvector v2);
 t_3dvector	vectormultiply(t_3dvector v1, double value);
 t_3dvector	getvector(double x, double y, double z);
 t_3dvector	vectorminus(t_3dvector v1, t_3dvector v2);
 t_3dvector	vectordivide(t_3dvector v1, double value);
+t_3dvector	vectorcross(t_3dvector v1, t_3dvector v2);
 t_3dvector	get_vector(double x, double y, double z);
 
 #endif

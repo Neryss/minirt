@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 16:03:01 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 14:39:57 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 12:19:21 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 bool	inter_disk(const t_ray ray, const t_disk disk, t_hit *hit)
 {

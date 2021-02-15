@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/02/15 11:09:25 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/02/15 12:54:14 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,10 @@ LDFLAGS = -lmlx -lm -framework OpenGL -framework AppKit -L. -lft
 LIBC = ar rcs
 SRCS =	srcs/minirt.c srcs/parsing.c srcs/vector.c srcs/checks.c srcs/errors.c \
 		srcs/events.c srcs/window.c srcs/inits.c srcs/objects.c srcs/getters.c \
-		srcs/save.c srcs/utils.c srcs/render.c srcs/raytrace_sphere.c srcs/operations.c \
-		srcs/rgb.c srcs/operations2.c srcs/raytrace_plane.c srcs/raytrace_disk.c \
-		srcs/raytracing.c srcs/scene.c srcs/utils2.c
+		srcs/save.c srcs/utils.c srcs/render.c srcs/raytracing/raytrace_sphere.c srcs/operations.c \
+		srcs/rgb.c srcs/operations2.c srcs/raytracing/raytrace_plane.c srcs/raytracing/raytrace_disk.c \
+		srcs/raytracing/raytracing.c srcs/raytracing/raytrace_triangle.c srcs/scene.c srcs/utils2.c \
+		srcs/vector2.c
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c

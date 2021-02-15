@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 14:03:27 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 14:38:59 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 12:19:27 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 bool	secdegsolve(t_3dvector point, double *t1, double *t2)
 {

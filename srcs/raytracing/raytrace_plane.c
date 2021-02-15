@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 14:34:51 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 15:24:45 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 12:19:24 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 bool	inter_plane(const t_ray ray, const t_plane plane, t_hit *hit)
 {
