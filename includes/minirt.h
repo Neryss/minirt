@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 19:45:23 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 11:10:11 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ typedef struct	s_handler
 	double		normal_dot_light;
 }				t_handler;
 
-double	ft_dmin(double a, double b);
+double		ft_dmin(double a, double b);
 int			start_init(char *map_path, t_engine *engine, int save);
 int			init_frame(t_engine *engine);
 int			check_resolution(t_engine *engine, int save);
@@ -199,12 +199,13 @@ t_rgb		add_rgb_rgb(t_rgb c1, t_rgb c2);
 t_rgb		mult_rgb_rgb(t_rgb r1, t_rgb r2);
 double		distance(t_3dvector p1, t_3dvector p2);
 int			imax(int a, int b);
-double	ft_dmax(double a, double b);
-void	raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
-void	raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
-int	imin(int a, int b);
-void	do_raytracing(t_engine *engine);
-void	set_hit_color(t_hit *hit);
+double		ft_dmax(double a, double b);
+void		raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
+void		raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
+int			imin(int a, int b);
+void		do_raytracing(t_engine *engine);
+void		set_hit_color(t_hit *hit);
+double		to_rad(double value);
 
 t_rgb		ft_get_rgb(char **line);
 t_3dvector	parse_vector(char **line);

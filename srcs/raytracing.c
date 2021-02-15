@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 14:48:13 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 20:14:26 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/15 10:41:56 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,24 @@ void	handle_lights(t_engine *engine, t_hit *hit)
 	set_hit_color(hit);
 }
 
-static void	draw_pixel(t_engine *engine, int x, int y, t_hit *hit, t_ray *ray)
+static void	draw_pixel(t_engine *engine, int x, int y, t_hit *hit)
 {
 	put_pxl(engine, x, y, 0x000000);
 	put_pxl(engine, x, y, ft_rgbtohex(hit->color.r,
 		hit->color.g, hit->color.b));
-	free(ray);
 	free(hit);
 }
 
-void	free_rayhit(t_ray *ray, t_hit *hit)
+t_ray	*create_spe_ray(t_engine *engine, int x, int y)
 {
-	free(ray);
-	free(hit);
+	t_ray	*ray;
+
+	ray = create_ray(engine->camera->pos,
+			getvector(x - engine->size_x
+				/ 2, engine->size_y / 2 - y,
+				(engine->size_y / 2) / tan((
+						engine->camera->fov * M_PI / 180) / 2)));
+	return (ray);
 }
 
 void	do_raytracing(t_engine *engine)
@@ -70,16 +75,13 @@ void	do_raytracing(t_engine *engine)
 	t_ray	*ray;
 	t_hit	*hit;
 
-	y = 0;
-	while (y < engine->size_y)
+	y = -1;
+	while (++y < engine->size_y)
 	{
-		x = 0;
-		while (x < engine->size_x)
+		x = -1;
+		while (++x < engine->size_x)
 		{
-			ray = create_ray(engine->camera->pos,
-			getvector(x - engine->size_x
-			/ 2, engine->size_y / 2 - y,
-			(engine->size_y / 2) / tan((engine->camera->fov * M_PI / 180) / 2)));
+			ray = create_spe_ray(engine, x, y);
 			hit = closest_inter(engine, ray);
 			if (hit->dist < INFINITY)
 			{
@@ -87,10 +89,8 @@ void	do_raytracing(t_engine *engine)
 					hit->normal = vectormultiply(hit->normal, -1);
 				handle_lights(engine, hit);
 			}
-			draw_pixel(engine, x, y, hit, ray);
-			// free(hit);
-			x++;
+			draw_pixel(engine, x, y, hit);
+			free(ray);
 		}
-		y++;
 	}
 }
