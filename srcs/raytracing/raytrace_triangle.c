@@ -6,18 +6,57 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 12:21:54 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/16 13:27:17 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 13:47:14 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-bool	inter_triangles(const t_ray ray, const t_triangle tr, t_hit *hit)
+static bool	edge_inter1(const t_triangle *tr, t_hit *tmp_hit)
 {
-	t_hit		tmp_hit;
 	t_3dvector	edge;
 	t_3dvector	vt;
 	t_3dvector	vp;
+
+	edge = vectorminus(tr->v2, tr->v1);
+	vp = vectorminus(tmp_hit->pos, tr->v1);
+	vt = vectorcross(edge, vp);
+	if (scalar(tr->normal, vt) < 0)
+		return (false);
+	return (true);
+}
+
+static bool	edge_inter2(const t_triangle *tr, t_hit *tmp_hit)
+{
+	t_3dvector	edge;
+	t_3dvector	vt;
+	t_3dvector	vp;
+
+	edge = vectorminus(tr->v3, tr->v2);
+	vp = vectorminus(tmp_hit->pos, tr->v2);
+	vt = vectorcross(edge, vp);
+	if (scalar(tr->normal, vt) < 0)
+		return (false);
+	return (true);
+}
+
+static bool	edge_inter3(const t_triangle *tr, t_hit *tmp_hit)
+{
+	t_3dvector	edge;
+	t_3dvector	vt;
+	t_3dvector	vp;
+
+	edge = vectorminus(tr->v1, tr->v3);
+	vp = vectorminus(tmp_hit->pos, tr->v3);
+	vt = vectorcross(edge, vp);
+	if (scalar(tr->normal, vt) < 0)
+		return (false);
+	return (true);
+}
+
+bool	inter_triangles(const t_ray ray, const t_triangle tr, t_hit *hit)
+{
+	t_hit		tmp_hit;
 	double		denom;
 	double		t;
 
@@ -25,27 +64,15 @@ bool	inter_triangles(const t_ray ray, const t_triangle tr, t_hit *hit)
 	if (fabs(denom) < EPSILON)
 		return (false);
 	denom = scalar(tr.normal, tr.v1);
-	t = ((- scalar(tr.normal, ray.origin) + denom)
-		/ scalar(tr.normal, ray.direction));
+	t = ((-scalar(tr.normal, ray.origin) + denom)
+			/ scalar(tr.normal, ray.direction));
 	if (t < EPSILON || t > hit->dist)
 		return (false);
 	tmp_hit.normal = tr.normal;
 	tmp_hit.pos = vectoradd(ray.origin, vectormultiply(ray.direction, t));
 	tmp_hit.dist = distance(ray.origin, tmp_hit.pos);
-	edge = vectorminus(tr.v2, tr.v1);
-	vp = vectorminus(tmp_hit.pos, tr.v1);
-	vt = vectorcross(edge, vp);
-	if (scalar(tr.normal, vt) < 0)
-		return (false);
-	edge = vectorminus(tr.v3, tr.v2);
-	vp = vectorminus(tmp_hit.pos, tr.v2);
-	vt = vectorcross(edge, vp);
-	if (scalar(tr.normal, vt) < 0)
-		return (false);
-	edge = vectorminus(tr.v1, tr.v3);
-	vp = vectorminus(tmp_hit.pos, tr.v3);
-	vt = vectorcross(edge, vp);
-	if (scalar(tr.normal, vt) < 0)
+	if (!edge_inter1(&tr, &tmp_hit) || !edge_inter2(&tr, &tmp_hit)
+		|| !edge_inter3(&tr, &tmp_hit))
 		return (false);
 	hit->normal = tmp_hit.normal;
 	hit->pos = tmp_hit.pos;
