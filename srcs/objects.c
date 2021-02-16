@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 15:21:19 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 16:31:43 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	add_sphere(t_list **lst, char *file)
 
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
-		close_minirt("Error while parsing the scene\n");
+		close_minirt("Error while parsing the scene(sphere)\n");
 	sphere->pos = parse_vector(&file);
 	sphere->diameter = ft_atof(file) / 2;
 	file += ft_atof_len(file);
 	sphere->rgb = ft_get_rgb(&file);
 	new = ft_lstnew(sphere);
 	if (!new)
-		close_minirt("Error while parsing the scene\n");
+		close_minirt("Error while parsing the scene(sphere)\n");
 	ft_lstadd_back(lst, new);
 }
 
@@ -37,7 +37,7 @@ void	add_plane(t_list **lst, char *file)
 
 	plane = malloc(sizeof(t_plane));
 	if (!plane)
-		close_minirt("Error while parsing the scene\n");
+		close_minirt("Error while parsing the scene(plane)\n");
 	plane->origin = parse_vector(&file);
 	plane->normal = parse_vector(&file);
 	plane->normal.x = to_rad(90 * plane->normal.x);
@@ -47,7 +47,7 @@ void	add_plane(t_list **lst, char *file)
 	plane->rgb = ft_get_rgb(&file);
 	new = ft_lstnew(plane);
 	if (!new)
-		close_minirt("Error while parsing the scene\n");
+		close_minirt("Error while parsing the scene(plane)\n");
 	ft_lstadd_back(lst, new);
 }
 
