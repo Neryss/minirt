@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 12:21:54 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 15:58:43 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 13:27:17 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	inter_triangles(const t_ray ray, const t_triangle tr, t_hit *hit)
 	if (fabs(denom) < EPSILON)
 		return (false);
 	denom = scalar(tr.normal, tr.v1);
-	t = (- (scalar(tr.normal, ray.origin) + denom)
+	t = ((- scalar(tr.normal, ray.origin) + denom)
 		/ scalar(tr.normal, ray.direction));
 	if (t < EPSILON || t > hit->dist)
 		return (false);
