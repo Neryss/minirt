@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 14:13:13 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 14:23:22 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_scene
 	t_list		*planes;
 	t_list		*disk;
 	t_list		*triangles;
+	t_list		*cylinders;
 	t_alight	alight;
 }				t_scene;
 
@@ -85,6 +86,15 @@ typedef struct s_hit
 	double		dist;
 	t_rgb		color;
 }				t_hit;
+
+typedef struct s_cylinder
+{
+	t_3dvector	pos;
+	t_3dvector	rot;
+	double		diameter;
+	double		height;
+	t_rgb		color;
+}				t_cylinder;
 
 typedef struct s_triangle
 {
@@ -147,6 +157,7 @@ void		add_light(t_list **lst, char *file);
 void		add_plane(t_list **lst, char *file);
 void		add_camera(t_list **lst, char *line);
 void		add_triangle(t_list **lst, char *file);
+void		add_cylinder(t_list **lst, char *file);
 void		get_scene(t_engine *engine);
 void		init_headers(unsigned int *headers
 , t_engine *engine, int extrabytes);
