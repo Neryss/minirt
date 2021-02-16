@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/16 14:49:24 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 16:26:34 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 
 # define ALBEDO 0.4
 # define EPSILON 0.001
+
+# define EXIT_KEY 53
+# define CAM_KEY 8
 
 typedef struct s_3dvector
 {
