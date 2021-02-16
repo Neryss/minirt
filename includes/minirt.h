@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/16 14:23:22 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 14:49:24 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_cylinder
 {
 	t_3dvector	pos;
 	t_3dvector	rot;
-	double		diameter;
+	double		radius;
 	double		height;
 	t_rgb		color;
 }				t_cylinder;
