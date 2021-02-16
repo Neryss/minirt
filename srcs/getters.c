@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:24:09 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/12 14:39:19 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/16 16:34:15 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ t_rgb	ft_get_rgb(char **line)
 	i += ft_skipuntilc(*line, ',');
 	*line += i;
 	if (**line != ',')
-		close_minirt("Error vector is invalid\n");
+		close_minirt("Error rgb is invalid\n");
 	*line += 1;
 	rgb.g = ft_atof(*line);
 	i = 0;
 	i += ft_atof_len(*line);
 	*line += i;
 	if (**line != ',')
-		close_minirt("Error vector is invalid\n");
+		close_minirt("Error rgb is invalid\n");
 	*line += 1;
 	rgb.b = ft_atof(*line);
 	i = 0;
