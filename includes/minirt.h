@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/16 16:26:34 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 14:09:52 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,6 +178,7 @@ void		raytrace_spheres(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_triangles(t_engine *engine, t_hit *hit, t_ray *ray);
+void	raytrace_cylinders(t_engine *engine, t_hit *hit, t_ray *ray);
 void		normalize(t_3dvector *v1);
 void		change_cam(t_engine *engine);
 void		do_raytracing(t_engine *engine);

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 14:47:29 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 14:10:09 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_hit	*closest_inter(t_engine *engine, t_ray *ray)
 	raytrace_planes(engine, hit, ray);
 	raytrace_disk(engine, hit, ray);
 	raytrace_triangles(engine, hit, ray);
+	raytrace_cylinders(engine, hit, ray);
 	return (hit);
 }
 
