@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:07:42 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/17 14:44:27 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 15:17:11 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ t_3dvector	cy_normal(t_hit *hit, const t_cylinder cy)
 	t_3dvector	c0;
 	t_3dvector	v;
 
-	if (hit->pos.x + cy.radius && hit->pos.x > cy.pos.x - cy.radius && hit->pos.z < cy.pos.z + cy.radius 
-		&& hit->pos.z > cy.pos.z - cy.radius)
+	if (hit->pos.x < cy.pos.x + cy.radius && hit->pos.x > cy.pos.x - cy.radius && hit->pos.z < cy.pos.z + cy.radius && hit->pos.z > cy.pos.z - cy.radius)
 	{
 		if (hit->pos.y < cy.pos.y + cy.height + EPSILON && hit->pos.y > cy.pos.y + cy.height - EPSILON)
 			return (get_vector(0, 1, 0));
@@ -45,6 +44,7 @@ bool	inter_cylinders(const t_ray ray, const t_cylinder cy, t_hit *hit)
 	double		delta;
 	double		t;
 
+	// printf("%f, %f\n", ray.origin.z, cy.pos.z);
 	p0 = get_vector(ray.origin.x - cy.pos.x, ray.origin.y - cy.pos.y, ray.origin.z - cy.pos.z);
 
 	a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
@@ -57,10 +57,10 @@ bool	inter_cylinders(const t_ray ray, const t_cylinder cy, t_hit *hit)
 	t = (-b - sqrt(delta)) / a;
 	if (t <= EPSILON|| t > hit->dist)
 		return (false);
-	hit->pos = p0;
+	hit->pos = vectoradd(ray.origin, vectormultiply(ray.direction, t));
 	hit->dist = t;
 	hit->normal = cy_normal(hit, cy);
-	// printf("sk\n");
+	// printf("normal x : %f, normal y : %f, normal z : %f\n", hit->normal.x, hit->normal.y, hit->normal.z);
 	return (true);
 }
 
