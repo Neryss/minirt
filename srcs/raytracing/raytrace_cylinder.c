@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:07:42 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/17 15:17:11 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/17 16:10:17 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,20 @@
 
 // bool	inter_base(const t_ray ray, const t_cylinder cy, t_hit *hit)
 // {
-	
+// 	t_3dvector	normal;
+// 	double		a;
+// 	double		b;
+// 	double		c;
+// 	double		d;
+
+// 	normal = cy_normal(hit, cy);
+// 	a = normal.x;
+// 	b = normal.y;
+// 	c = normal.z;
+// 	d = - (a * (cy.pos.x))
 // }
+
+// produit vectoriel rotation,
 
 t_3dvector	cy_normal(t_hit *hit, const t_cylinder cy)
 {
@@ -29,7 +41,7 @@ t_3dvector	cy_normal(t_hit *hit, const t_cylinder cy)
 		if (hit->pos.y < cy.pos.y + EPSILON && hit->pos.y > cy.pos.y - EPSILON)
 			return (get_vector(0, -1, 0));
 	}
-	c0 = get_vector(cy.pos.x, hit->pos.y, cy.pos.z);
+	c0 = get_vector(cy.pos.x, hit->pos.y, cy.pos.z);	
 	v = vectorminus(hit->pos, c0);
 	normalize(&v);
 	return (v);
@@ -44,7 +56,6 @@ bool	inter_cylinders(const t_ray ray, const t_cylinder cy, t_hit *hit)
 	double		delta;
 	double		t;
 
-	// printf("%f, %f\n", ray.origin.z, cy.pos.z);
 	p0 = get_vector(ray.origin.x - cy.pos.x, ray.origin.y - cy.pos.y, ray.origin.z - cy.pos.z);
 
 	a = ray.direction.x * ray.direction.x + ray.direction.z * ray.direction.z;
@@ -60,7 +71,6 @@ bool	inter_cylinders(const t_ray ray, const t_cylinder cy, t_hit *hit)
 	hit->pos = vectoradd(ray.origin, vectormultiply(ray.direction, t));
 	hit->dist = t;
 	hit->normal = cy_normal(hit, cy);
-	// printf("normal x : %f, normal y : %f, normal z : %f\n", hit->normal.x, hit->normal.y, hit->normal.z);
 	return (true);
 }
 
