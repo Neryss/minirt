@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:07:42 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/17 16:55:26 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/18 11:08:55 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,37 @@ t_3dvector	cy_normal(t_hit *hit, const t_cylinder cy)
 	return (v);
 }
 
+bool	test_inter(const t_cylinder cy, const t_ray ray, t_hit *hit)
+{
+	t_3dvector	pdp;
+	t_3dvector	eyepdp;
+	t_3dvector	rdxpdp;
+	double		a;
+	double		b;
+	double		c;
+	double		delta;
+	double		t;
+	double		t1;
+
+	pdp = vectorminus(cy.rot, cy.pos);
+	eyepdp = vectorcross(vectorminus(ray.origin, cy.pos), pdp);
+	rdxpdp = vectorcross(ray.direction, pdp);
+	a = scalar(rdxpdp, rdxpdp);
+	b = 2 * scalar(rdxpdp, eyepdp);
+	c = scalar(eyepdp, eyepdp) - (cy.radius * cy.radius * scalar(pdp, pdp));
+	delta = sqrt((b * b) - (4 * a * c));
+	if (delta < 0)
+		return (false);
+	t = (-b - (delta)) / (2.0 * a);
+	t1 = (-b + (delta)) / (2.0 * a);
+	if (t <= EPSILON|| t > hit->dist)
+		return (false);
+	hit->dist = ft_dmin(t, t1);
+	hit->pos = vectoradd(ray.origin, vectormultiply(ray.direction, t));
+	hit->normal = cy_normal(hit, cy);
+	return (true);
+}
+
 bool	inter_cylinders(const t_ray ray, const t_cylinder cy, t_hit *hit)
 {
 	t_3dvector	p0;
@@ -83,7 +114,7 @@ void	raytrace_cylinders(t_engine *engine, t_hit *hit, t_ray *ray)
 	while (new)
 	{
 		cy = new->content;
-		if (inter_cylinders(*ray, *cy, hit))
+		if (test_inter(*cy, *ray, hit))
 			hit->color = cy->color;
 		new = new->next;
 	}
