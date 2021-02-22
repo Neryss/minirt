@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:28:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/16 16:34:52 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:48:01 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	change_cam(t_engine *engine)
 {
 	t_list	*frst;
 
+	engine->need_render = true;
 	frst = engine->scene->cams;
 	while (frst)
 	{

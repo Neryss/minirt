@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/18 12:46:01 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:47:27 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,14 @@ t_hit	*closest_inter(t_engine *engine, t_ray *ray)
 
 void	render(t_engine *engine)
 {
-	mlx_clear_window(engine->mlx, engine->win);
-	do_raytracing(engine);
-	mlx_put_image_to_window(engine->mlx, engine->win, engine->frame->img, 0, 0);
-	mlx_do_sync(engine->mlx);
+	if (engine->need_render)
+	{
+		mlx_clear_window(engine->mlx, engine->win);
+		do_raytracing(engine);
+		mlx_put_image_to_window(engine->mlx, engine->win, engine->frame->img, 0, 0);
+		mlx_do_sync(engine->mlx);
+	}
+	engine->need_render = false;
 }
 
 int	call_render(t_engine *engine)

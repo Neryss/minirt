@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:24:09 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/16 16:34:15 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:33:04 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 t_3dvector	parse_vector(char **line)
 {

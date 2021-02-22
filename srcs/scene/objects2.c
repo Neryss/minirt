@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:12:58 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/17 14:17:16 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:34:09 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 void	add_cylinder(t_list **lst, char *file)
 {

@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:53:06 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 13:25:31 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:45:30 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 static char	**read_map(char *path_to_map)
 {
@@ -45,6 +45,8 @@ char	**get_map_info(char *path_to_map, t_engine *engine)
 
 	map_array = read_map(path_to_map);
 	i = 0;
+	if (!map_array)
+		close_minirt("Error empty file");
 	while (map_array[i])
 	{
 		if (map_array[i][0] == 'R')

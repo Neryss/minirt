@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:09:10 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/16 14:23:35 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:46:28 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void	init_engine(t_engine *engine)
 	engine->size_y = 0;
 	engine->mlx = NULL;
 	engine->win = NULL;
+	engine->need_render = true;
 }

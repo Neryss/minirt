@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/02/22 13:27:34 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/02/22 13:42:53 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,11 @@ SRCS =	srcs/utils/utils.c srcs/utils/cylinder_utils.c srcs/utils/utils2.c srcs/u
 		srcs/utils/operations2.c srcs/utils/operations.c srcs/utils/rgb.c\
 		srcs/raytracing/raytrace_sphere.c srcs/raytracing/raytrace_disk.c srcs/raytracing/raytrace_triangle.c \
 		srcs/raytracing/raytracing.c srcs/raytracing/raytrace_plane.c srcs/raytracing/raytrace_cylinder.c \
-		srcs/minirt.c srcs/parsing.c srcs/vector.c srcs/checks.c srcs/errors.c \
-		srcs/events.c srcs/window.c srcs/inits.c srcs/objects.c srcs/getters.c srcs/save.c \
-		srcs/render.c srcs/scene.c srcs/vector2.c srcs/objects2.c \
+		srcs/parsing/parsing.c srcs/parsing/checks.c srcs/parsing/getters.c \
+		srcs/scene/objects.c srcs/scene/scene.c srcs/scene/objects2.c\
+		srcs/minirt.c srcs/vector.c srcs/errors.c \
+		srcs/events.c srcs/window.c srcs/inits.c srcs/save.c \
+		srcs/render.c srcs/vector2.c \
 		
 OBJS = $(SRCS:.c=.o)
 

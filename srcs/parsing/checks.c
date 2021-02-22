@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:19:09 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/09 10:47:53 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:30:49 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 int	check_caps_args(t_engine *engine)
 {

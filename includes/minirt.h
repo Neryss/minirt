@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:22:55 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:46:07 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_engine
 	char		**file;
 	int			size_x;
 	int			size_y;
+	bool		need_render;
 }				t_engine;
 
 typedef struct s_hit
