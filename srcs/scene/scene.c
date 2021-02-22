@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 16:00:20 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:43:41 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	add_disk(t_list **lst, char *line)
 	ft_lstadd_back(lst, new);
 }
 
-static void	add_alight(t_engine *engine, char *line)
+void	add_alight(t_engine *engine, char *line)
 {
 	engine->scene->alight.intensity = ft_atof(line);
 	if (!check_intensity(engine->scene->alight.intensity))
@@ -97,22 +97,11 @@ void	get_scene(t_engine *engine)
 	i = 0;
 	while (engine->file[i])
 	{
-		if (ft_startwith(engine->file[i], "sp") && !ft_isalpha(engine->file[i][3]))
-			add_sphere(&engine->scene->spheres, engine->file[i] + 2);
-		if (ft_startwith(engine->file[i], "pl") && !ft_isalpha(engine->file[i][3]))
-			add_plane(&engine->scene->planes, engine->file[i] + 2);
-		if (engine->file[i][0] == 'l' && !ft_isalpha(engine->file[i][2]))
-			add_light(&engine->scene->lights, engine->file[i] + 1);
-		if (engine->file[i][0] == 'c' && !ft_isalpha(engine->file[i][2]))
-			add_camera(&engine->scene->cams, engine->file[i] + 1);
-		if (engine->file[i][0] == 'A' && !ft_isalpha(engine->file[i][2]))
-			add_alight(engine, engine->file[i] + 1);
-		if (ft_startwith(engine->file[i], "ds") && !ft_isalpha(engine->file[i][3]))
-			add_disk(&engine->scene->disk, engine->file[i] + 2);
-		if (ft_startwith(engine->file[i], "tr") && !ft_isalpha(engine->file[i][3]))
-			add_triangle(&engine->scene->triangles, engine->file[i] + 2);
-		if (ft_startwith(engine->file[i], "cy") && !ft_isalpha(engine->file[i][3]))
-			add_cylinder(&engine->scene->cylinders, engine->file[i] + 2);
+		if (check_lines(engine, i) || check_uniq(engine->file[i]))
+			;
+		else
+			close_minirt(ft_strjoin("Bad file formating at : \n"
+				, engine->file[i]));
 		i++;
 	}
 }

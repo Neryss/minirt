@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 14:20:54 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 16:44:12 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,8 @@ typedef struct s_resolve
 
 void		init_engine(t_engine *engine);
 void		add_sphere(t_list **lst, char *file);
+void		add_disk(t_list **lst, char *line);
+void		add_alight(t_engine *engine, char *line);
 void		add_light(t_list **lst, char *file);
 void		add_plane(t_list **lst, char *file);
 void		add_camera(t_list **lst, char *line);
@@ -221,6 +223,8 @@ bool		check_rgb(t_rgb c);
 bool		check_normal(t_3dvector nor);
 bool		check_fov(int fov);
 bool		check_intensity(double i);
+bool		check_lines(t_engine *engine, int i);
+bool		check_uniq(char *str);
 t_ray		*create_ray(t_3dvector pos, t_3dvector dir);
 t_hit		*closest_inter(t_engine *engine, t_ray *ray);
 t_rgb		create_rgb(int r, int g, int b);
