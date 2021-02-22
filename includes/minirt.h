@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/17 14:09:52 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 12:58:49 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,14 @@ typedef struct s_handler
 	double		normal_dot_light;
 }				t_handler;
 
+typedef struct s_resolve
+{
+	double		tmin;
+	t_3dvector	t;
+	t_3dvector	b;
+	t_3dvector	normal;
+}				t_resolve;
+
 void		init_engine(t_engine *engine);
 void		add_sphere(t_list **lst, char *file);
 void		add_light(t_list **lst, char *file);
@@ -178,12 +186,15 @@ void		raytrace_spheres(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_triangles(t_engine *engine, t_hit *hit, t_ray *ray);
-void	raytrace_cylinders(t_engine *engine, t_hit *hit, t_ray *ray);
+void		raytrace_cylinders(t_engine *engine, t_hit *hit, t_ray *ray);
 void		normalize(t_3dvector *v1);
 void		change_cam(t_engine *engine);
 void		do_raytracing(t_engine *engine);
 void		get_triangle_normal(t_triangle *triangle);
 void		set_hit_color(t_hit *hit);
+void		set_res(t_resolve *res, double t, t_ray ray, t_cylinder cy);
+void		init_res(t_resolve *res, t_cylinder cy);
+void		set_hit(t_hit *hit, t_ray ray, t_resolve res);
 char		**get_map_info(char *path_to_map, t_engine *engine);
 double		getnorm2(t_3dvector v1);
 double		scalar(t_3dvector v1, t_3dvector v2);
@@ -191,6 +202,9 @@ double		ft_dmin(double a, double b);
 double		distance(t_3dvector p1, t_3dvector p2);
 double		ft_dmax(double a, double b);
 double		to_rad(double value);
+double		calc_a(t_ray ray, t_resolve *res);
+double		calc_b(t_ray ray, t_resolve *res);
+float		magnitude(t_3dvector a);
 int			start_init(char *map_path, t_engine *engine, int save);
 int			init_frame(t_engine *engine);
 int			check_resolution(t_engine *engine, int save);
@@ -210,6 +224,9 @@ t_rgb		add_rgb_rgb(t_rgb c1, t_rgb c2);
 t_rgb		mult_rgb_rgb(t_rgb r1, t_rgb r2);
 t_rgb		ft_get_rgb(char **line);
 
+t_3dvector	process_normal(t_ray ray, t_3dvector normal);
+t_3dvector	return_normal(t_3dvector point, t_cylinder cy);
+t_3dvector	apply_rot(t_3dvector pos, t_3dvector dir, t_3dvector rot);
 t_3dvector	get_normalized(t_3dvector vector);
 t_3dvector	parse_vector(char **line);
 t_3dvector	vectoradd(t_3dvector v1, t_3dvector v2);

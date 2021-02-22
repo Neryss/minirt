@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/02/16 14:26:02 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/02/22 12:56:17 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ SRCS =	srcs/minirt.c srcs/parsing.c srcs/vector.c srcs/checks.c srcs/errors.c \
 		srcs/save.c srcs/utils.c srcs/render.c srcs/raytracing/raytrace_sphere.c srcs/operations.c \
 		srcs/rgb.c srcs/operations2.c srcs/raytracing/raytrace_plane.c srcs/raytracing/raytrace_disk.c \
 		srcs/raytracing/raytracing.c srcs/raytracing/raytrace_triangle.c srcs/scene.c srcs/utils2.c \
-		srcs/vector2.c srcs/raytracing/raytrace_cylinder.c srcs/objects2.c
+		srcs/vector2.c srcs/raytracing/raytrace_cylinder.c srcs/objects2.c srcs/cylinder_utils.c
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c
