@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:34:04 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 14:27:29 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	add_plane(t_list **lst, char *file)
 		close_minirt("Error while parsing the scene(plane)\n");
 	plane->origin = parse_vector(&file);
 	plane->normal = parse_vector(&file);
+	if (!check_normal(plane->normal))
+		close_minirt("Error : normal out of bounds [-1, 1]");
 	plane->normal.x = to_rad(90 * plane->normal.x);
 	plane->normal.y = to_rad(90 * plane->normal.y);
 	plane->normal.z = to_rad(90 * plane->normal.z);
@@ -68,19 +70,6 @@ void	add_triangle(t_list **lst, char *file)
 	if (!new)
 		close_minirt("Error while parsing the scene (triangle)\n");
 	ft_lstadd_back(lst, new);
-}
-
-t_light	*create_light(t_3dvector pos, double intensity, t_rgb color)
-{
-	t_light	*light;
-
-	light = malloc(sizeof(t_light));
-	if (!light)
-		close_minirt("Error during light malloc\n");
-	light->pos = pos;
-	light->intensity = intensity;
-	light->color = color;
-	return (light);
 }
 
 t_ray	*create_ray(t_3dvector pos, t_3dvector dir)

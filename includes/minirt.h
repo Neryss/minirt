@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:46:07 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 14:20:54 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,10 @@ int			get_pixel_color(t_engine *engine, int x, int y);
 int			call_render(t_engine *engine);
 int			imax(int a, int b);
 int			imin(int a, int b);
+bool		check_rgb(t_rgb c);
+bool		check_normal(t_3dvector nor);
+bool		check_fov(int fov);
+bool		check_intensity(double i);
 t_ray		*create_ray(t_3dvector pos, t_3dvector dir);
 t_hit		*closest_inter(t_engine *engine, t_ray *ray);
 t_rgb		create_rgb(int r, int g, int b);

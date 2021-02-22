@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:34:13 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 14:30:22 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@ void	add_light(t_list **lst, char *file)
 		close_minirt("Error while parsing the scene(light)\n");
 	light->pos = parse_vector(&file);
 	light->intensity = ft_atof(file);
+	printf("i : %f\n", light->intensity);
+	if (!check_intensity(light->intensity))
+		close_minirt("Error : light intensity out of bounds [0, 1]");
 	file += ft_atof_len(file);
 	light->color = ft_get_rgb(&file);
 	new = ft_lstnew(light);
@@ -41,7 +44,11 @@ void	add_camera(t_list **lst, char *line)
 		close_minirt("Error while parsing the scene(camera)\n");
 	camera->pos = parse_vector(&line);
 	camera->rot = parse_vector(&line);
+	if (!check_normal(camera->rot))
+		close_minirt("Error : camera normal out of bounds [-1, 1]");
 	camera->fov = ft_atof(line);
+	if (!check_fov(camera->fov))
+		close_minirt("Error : camera fov out of bounds [0, 180]");
 	camera->id = id++;
 	new = ft_lstnew(camera);
 	if (!new)
@@ -59,6 +66,8 @@ void	add_disk(t_list **lst, char *line)
 		close_minirt("Error while parsing the scene(disk)\n");
 	disk->origin = parse_vector(&line);
 	disk->normal = parse_vector(&line);
+	if (!check_normal(disk->normal))
+		close_minirt("Error : disk normal out of bounds [-1, 1]");
 	disk->normal.x = to_rad(90 * disk->normal.x);
 	disk->normal.y = to_rad(90 * disk->normal.y);
 	disk->normal.z = to_rad(90 * disk->normal.z);
@@ -75,6 +84,8 @@ void	add_disk(t_list **lst, char *line)
 static void	add_alight(t_engine *engine, char *line)
 {
 	engine->scene->alight.intensity = ft_atof(line);
+	if (!check_intensity(engine->scene->alight.intensity))
+		close_minirt("Error : ambiant light intensity out of bounds [0, 1]");
 	line += ft_atof_len(line);
 	engine->scene->alight.color = ft_get_rgb(&line);
 }
