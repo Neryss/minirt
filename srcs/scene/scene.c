@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 14:30:22 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 15:13:00 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,21 +97,21 @@ void	get_scene(t_engine *engine)
 	i = 0;
 	while (engine->file[i])
 	{
-		if (ft_startwith(engine->file[i], "sp"))
+		if (ft_startwith(engine->file[i], "sp") && !ft_isalpha(engine->file[i][3]))
 			add_sphere(&engine->scene->spheres, engine->file[i] + 2);
-		if (ft_startwith(engine->file[i], "pl"))
+		if (ft_startwith(engine->file[i], "pl") && !ft_isalpha(engine->file[i][3]))
 			add_plane(&engine->scene->planes, engine->file[i] + 2);
-		if (engine->file[i][0] == 'l')
+		if (engine->file[i][0] == 'l' && !ft_isalpha(engine->file[i][2]))
 			add_light(&engine->scene->lights, engine->file[i] + 1);
-		if (engine->file[i][0] == 'c')
+		if (engine->file[i][0] == 'c' && !ft_isalpha(engine->file[i][2]))
 			add_camera(&engine->scene->cams, engine->file[i] + 1);
-		if (engine->file[i][0] == 'A')
+		if (engine->file[i][0] == 'A' && !ft_isalpha(engine->file[i][2]))
 			add_alight(engine, engine->file[i] + 1);
-		if (ft_startwith(engine->file[i], "ds"))
+		if (ft_startwith(engine->file[i], "ds") && !ft_isalpha(engine->file[i][3]))
 			add_disk(&engine->scene->disk, engine->file[i] + 2);
-		if (ft_startwith(engine->file[i], "tr"))
+		if (ft_startwith(engine->file[i], "tr") && !ft_isalpha(engine->file[i][3]))
 			add_triangle(&engine->scene->triangles, engine->file[i] + 2);
-		if (ft_startwith(engine->file[i], "cy"))
+		if (ft_startwith(engine->file[i], "cy") && !ft_isalpha(engine->file[i][3]))
 			add_cylinder(&engine->scene->cylinders, engine->file[i] + 2);
 		i++;
 	}
