@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 15:04:53 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 11:11:03 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:12:43 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 double	scalar(t_3dvector v1, t_3dvector v2)
 {

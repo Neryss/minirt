@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/02/22 12:56:17 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/02/22 13:27:34 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,15 +34,17 @@ _IWHITE=\033[47m
 
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iminilibx -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -Iminilibx -g
 LDFLAGS = -lmlx -lm -framework OpenGL -framework AppKit -L. -lft 
 LIBC = ar rcs
-SRCS =	srcs/minirt.c srcs/parsing.c srcs/vector.c srcs/checks.c srcs/errors.c \
-		srcs/events.c srcs/window.c srcs/inits.c srcs/objects.c srcs/getters.c \
-		srcs/save.c srcs/utils.c srcs/render.c srcs/raytracing/raytrace_sphere.c srcs/operations.c \
-		srcs/rgb.c srcs/operations2.c srcs/raytracing/raytrace_plane.c srcs/raytracing/raytrace_disk.c \
-		srcs/raytracing/raytracing.c srcs/raytracing/raytrace_triangle.c srcs/scene.c srcs/utils2.c \
-		srcs/vector2.c srcs/raytracing/raytrace_cylinder.c srcs/objects2.c srcs/cylinder_utils.c
+SRCS =	srcs/utils/utils.c srcs/utils/cylinder_utils.c srcs/utils/utils2.c srcs/utils/cylinder_utils2.c \
+		srcs/utils/operations2.c srcs/utils/operations.c srcs/utils/rgb.c\
+		srcs/raytracing/raytrace_sphere.c srcs/raytracing/raytrace_disk.c srcs/raytracing/raytrace_triangle.c \
+		srcs/raytracing/raytracing.c srcs/raytracing/raytrace_plane.c srcs/raytracing/raytrace_cylinder.c \
+		srcs/minirt.c srcs/parsing.c srcs/vector.c srcs/checks.c srcs/errors.c \
+		srcs/events.c srcs/window.c srcs/inits.c srcs/objects.c srcs/getters.c srcs/save.c \
+		srcs/render.c srcs/scene.c srcs/vector2.c srcs/objects2.c \
+		
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c
@@ -59,7 +61,6 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS)
 	@printf " $(_GREEN)=>$(_END) Fwinished uwu!\n"
 
-debug:
 	$(MAKE) -C ./libft
 	$(MAKE) -C ./minilibx
 	cp ./libft/libft.a ./

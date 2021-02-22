@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:45:41 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 11:17:00 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:13:00 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 double	to_rad(double value)
 {

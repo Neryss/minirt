@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 13:17:01 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 11:11:55 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:13:17 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 t_rgb	mult_rgb_double(t_rgb rgb, double value)
 {

@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:59:49 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/15 11:16:55 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:12:54 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 void	write_custom(int fd, unsigned int val)
 {

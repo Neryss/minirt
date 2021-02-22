@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:43:18 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:01:23 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:12:49 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 double	distance(t_3dvector p1, t_3dvector p2)
 {

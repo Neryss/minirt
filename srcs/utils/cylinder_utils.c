@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:44:00 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:04:31 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:12:35 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 t_3dvector	return_normal(t_3dvector point, t_cylinder cy)
 {

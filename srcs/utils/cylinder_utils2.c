@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:57:22 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:01:35 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 13:12:39 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minirt.h"
+#include "../../includes/minirt.h"
 
 t_3dvector	process_normal(t_ray ray, t_3dvector normal)
 {
