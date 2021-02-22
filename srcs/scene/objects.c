@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:06:20 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 14:27:29 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 15:59:21 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void	add_sphere(t_list **lst, char *file)
 
 	sphere = malloc(sizeof(t_sphere));
 	if (!sphere)
-		close_minirt("Error while parsing the scene(sphere)\n");
+		close_minirt("While parsing the scene(sphere)\n");
 	sphere->pos = parse_vector(&file);
 	sphere->diameter = ft_atof(file) / 2;
 	file += ft_atof_len(file);
 	sphere->rgb = ft_get_rgb(&file);
 	new = ft_lstnew(sphere);
 	if (!new)
-		close_minirt("Error while parsing the scene(sphere)\n");
+		close_minirt("While parsing the scene(sphere)\n");
 	ft_lstadd_back(lst, new);
 }
 
@@ -37,11 +37,11 @@ void	add_plane(t_list **lst, char *file)
 
 	plane = malloc(sizeof(t_plane));
 	if (!plane)
-		close_minirt("Error while parsing the scene(plane)\n");
+		close_minirt("While parsing the scene(plane)\n");
 	plane->origin = parse_vector(&file);
 	plane->normal = parse_vector(&file);
 	if (!check_normal(plane->normal))
-		close_minirt("Error : normal out of bounds [-1, 1]");
+		close_minirt("Normal out of bounds [-1, 1]");
 	plane->normal.x = to_rad(90 * plane->normal.x);
 	plane->normal.y = to_rad(90 * plane->normal.y);
 	plane->normal.z = to_rad(90 * plane->normal.z);
@@ -49,7 +49,7 @@ void	add_plane(t_list **lst, char *file)
 	plane->rgb = ft_get_rgb(&file);
 	new = ft_lstnew(plane);
 	if (!new)
-		close_minirt("Error while parsing the scene(plane)\n");
+		close_minirt("While parsing the scene(plane)\n");
 	ft_lstadd_back(lst, new);
 }
 
@@ -60,7 +60,7 @@ void	add_triangle(t_list **lst, char *file)
 
 	triangle = malloc(sizeof(t_triangle));
 	if (!triangle)
-		close_minirt("Error while parsing the scene (triangle)\n");
+		close_minirt("While parsing the scene (triangle)\n");
 	triangle->v1 = parse_vector(&file);
 	triangle->v2 = parse_vector(&file);
 	triangle->v3 = parse_vector(&file);
@@ -68,7 +68,7 @@ void	add_triangle(t_list **lst, char *file)
 	get_triangle_normal(triangle);
 	new = ft_lstnew(triangle);
 	if (!new)
-		close_minirt("Error while parsing the scene (triangle)\n");
+		close_minirt("While parsing the scene (triangle)\n");
 	ft_lstadd_back(lst, new);
 }
 
@@ -78,7 +78,7 @@ t_ray	*create_ray(t_3dvector pos, t_3dvector dir)
 
 	ray = malloc(sizeof(t_ray));
 	if (!ray)
-		close_minirt("Error during ray malloc\n");
+		close_minirt("During ray malloc\n");
 	ray->origin = pos;
 	ray->direction = get_normalized(dir);
 	return (ray);

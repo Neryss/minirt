@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:24:09 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 14:11:37 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 15:58:41 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ t_3dvector	parse_vector(char **line)
 	i += ft_skipuntilc(*line, ',');
 	*line += i;
 	if (**line != ',')
-		close_minirt("Error vector is invalid\n");
+		close_minirt("Vector is invalid\n");
 	*line += 1;
 	vec.y = ft_atof(*line);
 	i = 0;
 	i += ft_atof_len(*line);
 	*line += i;
 	if (**line != ',')
-		close_minirt("Error vector is invalid\n");
+		close_minirt("Vector is invalid\n");
 	*line += 1;
 	vec.z = ft_atof(*line);
 	i = 0;
@@ -48,20 +48,20 @@ t_rgb	ft_get_rgb(char **line)
 	i += ft_skipuntilc(*line, ',');
 	*line += i;
 	if (**line != ',')
-		close_minirt("Error rgb is invalid\n");
+		close_minirt("Rgb is invalid\n");
 	*line += 1;
 	rgb.g = ft_atof(*line);
 	i = 0;
 	i += ft_atof_len(*line);
 	*line += i;
 	if (**line != ',')
-		close_minirt("Error rgb is invalid\n");
+		close_minirt("Rgb is invalid\n");
 	*line += 1;
 	rgb.b = ft_atof(*line);
 	i = 0;
 	i += ft_atof_len(*line);
 	*line += i;
 	if (!check_rgb(rgb))
-		close_minirt("Error : rgb out of bounds [0, 255]");
+		close_minirt("Rgb out of bounds [0, 255]");
 	return (rgb);
 }

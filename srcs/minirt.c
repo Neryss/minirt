@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:12:58 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/10 10:32:15 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 15:57:38 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	start_init(argv[1], &engine, save);
 	if (!init_frame(&engine))
-		close_minirt("Error during scene init\n");
+		close_minirt("During scene init\n");
 	change_cam(&engine);
 	if (save)
 	{

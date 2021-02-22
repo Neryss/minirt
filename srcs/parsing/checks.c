@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:19:09 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 14:20:44 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 15:58:22 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,13 @@ int	check_caps_args(t_engine *engine)
 void	check_args(int argc, char **argv)
 {
 	if (argc != 2 && argc != 3)
-		close_minirt("Error wrong numbers of arguments\n");
+		close_minirt("Wrong numbers of arguments\n");
 	if (!ft_endwith(argv[1], ".rt"))
-		close_minirt("Error bad file format\n");
+		close_minirt("Bad file format\n");
 	if (open(argv[1], O_DIRECTORY) != -1)
-		close_minirt("Error invalid file descriptor");
+		close_minirt("Invalid file descriptor");
 	if (open(argv[1], O_RDONLY) == -1)
-		close_minirt("Error during file opening");
+		close_minirt("During file opening");
 }
 
 int	check_resolution(t_engine *engine, int save)
@@ -93,7 +93,7 @@ int	check_resolution(t_engine *engine, int save)
 	if (!save)
 	{
 		if (engine->size_x <= 0 || engine->size_y <= 0)
-			close_minirt("Error invalid resolution\n");
+			close_minirt("Invalid resolution\n");
 		if (engine->size_x > max_x)
 			engine->size_x = max_x;
 		if (engine->size_y > max_y)

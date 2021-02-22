@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:47:27 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 15:57:45 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_hit	*closest_inter(t_engine *engine, t_ray *ray)
 
 	hit = malloc(sizeof(t_hit));
 	if (!hit)
-		close_minirt("Error during malloc");
+		close_minirt("During malloc");
 	hit->dist = INFINITY;
 	hit->color = create_rgb(0, 0, 0);
 	raytrace_cylinders(engine, hit, ray);

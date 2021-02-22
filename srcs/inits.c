@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:09:10 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:46:28 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/22 15:57:32 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	start_init(char *map_path, t_engine *engine, int save)
 	if (!check_resolution(engine, save))
 		return (-1);
 	if (!check_caps_args(engine))
-		close_minirt("Error too many unique objects");
+		close_minirt("Too many unique objects");
 	engine->mlx = mlx_init();
 	engine->win = mlx_new_window(
 			engine->mlx, engine->size_x, engine->size_y, map_path);
 	get_scene(engine);
 	if (!engine->mlx || !engine->win)
-		close_minirt("Error during mlx init\n");
+		close_minirt("During mlx init\n");
 	return (1);
 }
 
@@ -32,13 +32,13 @@ int	init_frame(t_engine *engine)
 {
 	engine->frame = malloc(sizeof(t_frame));
 	if (!engine->frame)
-		close_minirt("Error no frame\n");
+		close_minirt("No frame\n");
 	engine->frame->img = mlx_new_image(
 			engine->mlx, engine->size_x, engine->size_y);
 	engine->frame->addr = mlx_get_data_addr(engine->frame->img,
 			&engine->frame->bpp, &engine->frame->line_len, &engine->frame->endian);
 	if (!engine->frame->img || !engine->frame->addr)
-		close_minirt("Error during img setup\n");
+		close_minirt("During img setup\n");
 	return (1);
 }
 
