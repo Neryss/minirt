@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 16:44:12 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 20:22:45 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_scene
 	t_list		*disk;
 	t_list		*triangles;
 	t_list		*cylinders;
+	t_list		*squares;
 	t_alight	alight;
 }				t_scene;
 
@@ -144,6 +145,14 @@ typedef struct s_light
 	t_rgb		color;
 }				t_light;
 
+typedef struct s_square
+{
+	t_3dvector	pos;
+	t_3dvector	normal;
+	t_rgb		color;
+	double		size;
+}				t_square;
+
 typedef struct s_handler
 {
 	t_ray		*ray;
@@ -172,6 +181,7 @@ void		add_plane(t_list **lst, char *file);
 void		add_camera(t_list **lst, char *line);
 void		add_triangle(t_list **lst, char *file);
 void		add_cylinder(t_list **lst, char *file);
+void		add_square(t_list **lst, char *file);
 void		get_scene(t_engine *engine);
 void		init_headers(unsigned int *headers
 , t_engine *engine, int extrabytes);
@@ -190,6 +200,7 @@ void		raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_triangles(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_cylinders(t_engine *engine, t_hit *hit, t_ray *ray);
+void		raytrace_square(t_engine *engine, t_hit *hit, t_ray *ray);
 void		normalize(t_3dvector *v1);
 void		change_cam(t_engine *engine);
 void		do_raytracing(t_engine *engine);

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:12:58 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 15:59:30 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 20:21:05 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	add_cylinder(t_list **lst, char *file)
 
 	cy = malloc(sizeof(t_cylinder));
 	if (!cy)
-		close_minirt("Wile parsing the scene (cylinder)\n");
+		close_minirt("Wile parsing the scene (cylinder)");
 	cy->pos = parse_vector(&file);
 	cy->rot = parse_vector(&file);
 	cy->radius = ft_atof(file) / 2;
@@ -29,6 +29,31 @@ void	add_cylinder(t_list **lst, char *file)
 	cy->color = ft_get_rgb(&file);
 	new = ft_lstnew(cy);
 	if (!new)
-		close_minirt("Wile parsing the scene(cylinder)\n");
+		close_minirt("Wile parsing the scene(cylinder)");
+	ft_lstadd_back(lst, new);
+}
+
+void	add_square(t_list **lst, char *file)
+{
+	t_square	*sq;
+	t_list		*new;
+
+	sq = malloc(sizeof(t_square));
+	if (!sq)
+		close_minirt("While parsing the scene (square)");
+	sq->pos = parse_vector(&file);
+	sq->normal = parse_vector(&file);
+	if (!check_normal(sq->normal))
+		close_minirt("Normal out of bounds [-1, 1]");
+	sq->normal.x = to_rad(90 * sq->normal.x);
+	sq->normal.y = to_rad(90 * sq->normal.y);
+	sq->normal.z = to_rad(90 * sq->normal.z);
+	normalize(&sq->normal);
+	sq->size = ft_atof(file) / 2;
+	file += ft_atof_len(file);
+	sq->color = ft_get_rgb(&file);
+	new = ft_lstnew(sq);
+	if (!new)
+		close_minirt("While parsing the scene (square)");
 	ft_lstadd_back(lst, new);
 }

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:45:41 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 16:42:55 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/02/24 20:26:15 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ bool	check_lines(t_engine *engine, int i)
 		add_triangle(&engine->scene->triangles, engine->file[i] + 2);
 	else if (ft_startwith(engine->file[i], "cy") && iw(*(engine->file[i] + 2)))
 		add_cylinder(&engine->scene->cylinders, engine->file[i] + 2);
+	else if (ft_startwith(engine->file[i], "sq") && iw(*(engine->file[i] + 2)))
+		add_square(&engine->scene->squares, engine->file[i] + 2);
 	else
 		return (false);
 	return (true);
