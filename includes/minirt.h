@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/03 13:25:30 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 15:58:46 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@
 # define EXIT_KEY 53
 # define CAM_KEY 8
 
-typedef struct s_thread_data
-{
-	t_engine	*engine;
-	int			from;
-	int			to;
-	int			id;
-}				t_thread_data;
 
 typedef struct s_3dvector
 {
@@ -91,6 +84,14 @@ typedef struct s_engine
 	int			size_y;
 	bool		need_render;
 }				t_engine;
+
+typedef struct s_thread_data
+{
+	t_engine	*engine;
+	int			from;
+	int			to;
+	int			id;
+}				t_thread_data;
 
 typedef struct s_hit
 {
@@ -235,7 +236,7 @@ bool		check_intensity(double i);
 bool		check_lines(t_engine *engine, int i);
 bool		check_uniq(char *str);
 t_ray		*create_ray(t_3dvector pos, t_3dvector dir);
-t_ray	*create_spe_ray(t_engine *engine, int x, int y);
+t_ray		*create_spe_ray(t_engine *engine, int x, int y);
 t_hit		*closest_inter(t_engine *engine, t_ray *ray);
 t_rgb		create_rgb(int r, int g, int b);
 t_rgb		mult_rgb_double(t_rgb rgb, double value);
