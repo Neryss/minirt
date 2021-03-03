@@ -6,37 +6,33 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/24 20:03:19 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/24 22:34:41 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 12:55:12 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-double	get_proj(t_3dvector origin, t_3dvector v1, t_3dvector v2)
+double	get_proj(t_3dvector origin, t_3dvector dir, t_3dvector pos)
 {
-	t_3dvector	proj;
-	t_3dvector	a;
-	t_3dvector	b;
+	t_3dvector	relative_pos;
 
-	a = vectorminus(v1, origin);
-	b = vectorminus(v2, origin);
-	proj = vectormultiply(a, scalar(b, a) / pow(magnitude(a), 2));
-	return (fabs(distance(get_vector(0, 0, 0), proj)));
+	relative_pos = vectorminus(pos, origin);
+	return (fabs(scalar(dir, relative_pos)));
 }
 
 bool	check_edges(t_square sq, t_hit hit)
 {
-	t_3dvector	r0;
-	t_3dvector	p;
+	t_3dvector	up;
+	t_3dvector	right;
 
-	r0 = sq.normal;
-	r0 = vectorcross(r0, get_vector(1, 0, 0));
-	p = vectoradd(sq.pos, vectormultiply(r0, sq.size));
-	if (get_proj(sq.pos, p, hit.pos) > sq.size)
+	if (sq.normal.x == 1 && sq.normal.y == 0 && sq.normal.z == 0)
+		up = get_vector(0, 1, 0);
+	else
+		up = get_normalized(vectorcross(get_vector(1, 0, 0), sq.normal));
+	if (get_proj(sq.pos, up, hit.pos) > sq.size)
 		return (false);
-	r0 = vectorcross(get_vector(0, 1, 0), r0);
-	p = vectoradd(sq.pos, vectormultiply(r0, sq.size));
-	if (get_proj(sq.pos, p, hit.pos) > sq.size)
+	right = get_normalized(vectorcross(up, sq.normal));
+	if (get_proj(sq.pos, right, hit.pos) > sq.size)
 		return (false);
 	return (true);
 }
