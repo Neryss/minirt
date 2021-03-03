@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/02/24 20:23:10 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/03 11:08:09 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ SRCS =	srcs/utils/utils.c srcs/utils/cylinder_utils.c srcs/utils/utils2.c srcs/u
 		srcs/utils/operations2.c srcs/utils/operations.c srcs/utils/rgb.c srcs/utils/utils3.c \
 		srcs/raytracing/raytrace_sphere.c srcs/raytracing/raytrace_disk.c srcs/raytracing/raytrace_triangle.c \
 		srcs/raytracing/raytracing.c srcs/raytracing/raytrace_plane.c srcs/raytracing/raytrace_cylinder.c \
-		srcs/raytracing/raytrace_square.c \
+		srcs/raytracing/raytrace_square.c srcs/raytracing/raytracing_utils.c \
 		srcs/parsing/parsing.c srcs/parsing/checks.c srcs/parsing/getters.c \
 		srcs/scene/objects.c srcs/scene/scene.c srcs/scene/objects2.c\
 		srcs/minirt.c srcs/vector.c srcs/errors.c \
