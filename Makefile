@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/03/03 13:04:34 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/03 13:08:43 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ _IWHITE=\033[47m
 NAME = miniRT
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -Iminilibx -g3
-LDFLAGS = -lmlx -lm -framework OpenGL -framework AppKit -L. -lft 
+LDFLAGS = -lmlx -lm -framework OpenGL -framework AppKit -L. -lft
 LIBC = ar rcs
 SRCS =	srcs/utils/utils.c srcs/utils/cylinder_utils.c srcs/utils/utils2.c srcs/utils/cylinder_utils2.c \
 		srcs/utils/operations2.c srcs/utils/operations.c srcs/utils/rgb.c srcs/utils/utils3.c \

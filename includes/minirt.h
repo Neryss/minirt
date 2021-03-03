@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/03 13:04:26 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 13:25:30 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,18 @@
 
 # define ALBEDO 0.4
 # define EPSILON 0.001
+# define MAX_THREAD 4
 
 # define EXIT_KEY 53
 # define CAM_KEY 8
+
+typedef struct s_thread_data
+{
+	t_engine	*engine;
+	int			from;
+	int			to;
+	int			id;
+}				t_thread_data;
 
 typedef struct s_3dvector
 {
