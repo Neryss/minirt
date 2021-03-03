@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:45:41 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/24 20:26:15 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 13:04:59 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ bool	check_lines(t_engine *engine, int i)
 		add_camera(&engine->scene->cams, engine->file[i] + 1);
 	else if (engine->file[i][0] == 'A' && iw(*(engine->file[i] + 1)))
 		add_alight(engine, engine->file[i] + 1);
-	else if (ft_startwith(engine->file[i], "ds") && iw(*(engine->file[i] + 2)))
-		add_disk(&engine->scene->disk, engine->file[i] + 2);
 	else if (ft_startwith(engine->file[i], "tr") && iw(*(engine->file[i] + 2)))
 		add_triangle(&engine->scene->triangles, engine->file[i] + 2);
 	else if (ft_startwith(engine->file[i], "cy") && iw(*(engine->file[i] + 2)))

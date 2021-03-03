@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 16:43:41 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 13:04:53 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,31 +53,6 @@ void	add_camera(t_list **lst, char *line)
 	new = ft_lstnew(camera);
 	if (!new)
 		close_minirt("While parsing the scene(camera)\n");
-	ft_lstadd_back(lst, new);
-}
-
-void	add_disk(t_list **lst, char *line)
-{
-	t_disk	*disk;
-	t_list	*new;
-
-	disk = malloc(sizeof(t_disk));
-	if (!disk)
-		close_minirt("While parsing the scene(disk)\n");
-	disk->origin = parse_vector(&line);
-	disk->normal = parse_vector(&line);
-	if (!check_normal(disk->normal))
-		close_minirt("Disk normal out of bounds [-1, 1]");
-	disk->normal.x = to_rad(90 * disk->normal.x);
-	disk->normal.y = to_rad(90 * disk->normal.y);
-	disk->normal.z = to_rad(90 * disk->normal.z);
-	normalize(&disk->normal);
-	disk->diameter = ft_atof(line);
-	line += ft_atof_len(line);
-	disk->rgb = ft_get_rgb(&line);
-	new = ft_lstnew(disk);
-	if (!new)
-		close_minirt("While parsing the scene(disk)\n");
 	ft_lstadd_back(lst, new);
 }
 

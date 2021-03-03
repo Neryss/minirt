@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/03 11:07:05 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/03 13:04:26 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_scene
 	t_list		*lights;
 	t_list		*spheres;
 	t_list		*planes;
-	t_list		*disk;
 	t_list		*triangles;
 	t_list		*cylinders;
 	t_list		*squares;
@@ -130,14 +129,6 @@ typedef struct s_plane
 	t_rgb		rgb;
 }				t_plane;
 
-typedef struct s_disk
-{
-	t_3dvector	origin;
-	t_3dvector	normal;
-	double		diameter;
-	t_rgb		rgb;
-}				t_disk;
-
 typedef struct s_light
 {
 	t_3dvector	pos;
@@ -174,7 +165,6 @@ typedef struct s_resolve
 
 void		init_engine(t_engine *engine);
 void		add_sphere(t_list **lst, char *file);
-void		add_disk(t_list **lst, char *line);
 void		add_alight(t_engine *engine, char *line);
 void		add_light(t_list **lst, char *file);
 void		add_plane(t_list **lst, char *file);
@@ -197,7 +187,6 @@ void		render(t_engine *engine);
 void		fill_screen(t_engine *engine);
 void		raytrace_spheres(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_planes(t_engine *engine, t_hit *hit, t_ray *ray);
-void		raytrace_disk(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_triangles(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_cylinders(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_square(t_engine *engine, t_hit *hit, t_ray *ray);
