@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:57:44 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/03 15:59:43 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 18:24:29 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ t_hit	*closest_inter(t_engine *engine, t_ray *ray)
 
 int	call_render(t_engine *engine)
 {
-	render(engine);
+	if (engine->need_render)
+		render(engine);
 	return (1);
 }
 

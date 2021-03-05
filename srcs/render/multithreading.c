@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 13:12:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 18:14:47 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 18:38:32 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@ void	*multi_raytracing(t_thread_data *thread_data)
 	pthread_exit(NULL);
 }
 
+void	*wait_thread(pthread_t *tid, long nproc, t_thread_data *thread)
+{
+	int	i;
+
+	i = 0;
+	while (i < nproc)
+		pthread_join(tid[i++], NULL);
+	printf("all thread created\n");
+	free(tid);
+	free(thread);
+	return (NULL);
+}
+
 void	*render_scene_multi(t_engine *engine)
 {
 	t_thread_data	*thread;
@@ -53,21 +66,11 @@ void	*render_scene_multi(t_engine *engine)
 		thread[i].id = i;
 		thread[i].engine = engine;
 		thread[i].to = to;
-		// printf("from %d, to %d\n", thread[i].from, thread[i].to);
 		if (pthread_create(&id[i], NULL, (void *)multi_raytracing, &thread[i]))
 			close_minirt("Thread creation failed :/");
 		printf("Thread %d created\n", i);
 	}
-	i = 0;
-	while (i < MAX_THREAD)
-	{
-		pthread_join(id[i++], NULL);
-		printf("Thread %d joined\n", i);
-	}
-	printf("yo\n");
-	free(id);
-	free(thread);
-	return (NULL);
+	return (wait_thread(id, MAX_THREAD, thread));
 }
 
 void	render(t_engine *engine)
@@ -76,6 +79,7 @@ void	render(t_engine *engine)
 	render_scene_multi(engine);
 	mlx_put_image_to_window(engine->mlx, engine->win, engine->frame->img, 0, 0);
 	mlx_do_sync(engine->mlx);
+	engine->need_render = false;
 }
 
 #endif

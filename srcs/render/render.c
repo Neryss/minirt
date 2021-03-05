@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 18:04:15 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 18:38:41 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*render_thread(t_thread_data *thread)
 {
 	int	x;
 	int	y;
-	
+
 	y = thread->from - 1;
 	while (++y < thread->to)
 	{
@@ -43,6 +43,7 @@ void	render(t_engine *engine)
 	render_thread(&thread);
 	mlx_put_image_to_window(engine->mlx, engine->win, engine->frame->img, 0, 0);
 	mlx_do_sync(engine->mlx);
+	engine->need_render = false;
 }
 
 #endif
