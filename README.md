@@ -1,6 +1,32 @@
 # minirt
 42minirt
 
+## General use
+
+First of all, compile the program using `make` or `make bonus` if you want to use multithreading.
+
+- Max thread is defined in the [minirt.h](includes/minirt.h) with the `MAX_THREAD` define.
+
+Then you can find some sample files in the [scenes](scenes) than you can use :
+
+```
+./minirt scenes/scene.rt
+```
+
+It will render the following scene in a window.
+
+### Save
+
+The `--save` argument can also be used if you want to render the scene and save it to a save.bmp file. (using this will remove the max screen resolution)
+
+Usage :
+
+```
+./minirt scenes/scene.rt --save
+```
+
+-------------
+
 ## Scene
 
 The scene must be declared in a special `.rt` file and must follow the following rules :
@@ -33,6 +59,8 @@ Example :
 A	0,2	255,255,255
 ```
 
+-------------
+
 ### Cameras
 
 As many cameras can be declared, at least one must exist. If used with the `--save` argument, the first camera will be used.
@@ -46,6 +74,8 @@ Example :
 ```
 C	-25,0.5,10.9	0,0,1	80
 ```
+
+-------------
 
 ### Lights
 
@@ -61,6 +91,8 @@ Example :
 l	-30,10,2.5	0.8	100,255,0
 ```
 
+-------------
+
 ### Spheres
 
 Usage :
@@ -72,6 +104,8 @@ Example :
 ```
 sp	0,4,10	2.5	255,0,255
 ```
+
+-------------
 
 ### Planes
 
@@ -85,6 +119,9 @@ Example :
 ```
 pl	10,4,15	0,1,0	255,255,255
 ```
+
+-------------
+
 ### Cylinders
 
 Usage :
@@ -97,6 +134,8 @@ Example :
 cy 10,0.5,15	1,0,0	2.6	7.9	255,255,255
 ```
 
+-------------
+
 ### Squares
 
 Usage :
@@ -108,6 +147,8 @@ Example :
 ```
 sq	5,0,4.5	0,0,1	5	100,100,100
 ```
+
+-------------
 
 ### Triangles
 
