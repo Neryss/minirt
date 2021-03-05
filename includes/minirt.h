@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/03 15:58:46 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 14:35:19 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 # define ALBEDO 0.4
 # define EPSILON 0.001
-# define MAX_THREAD 4
+# define MAX_THREAD 2
 
 # define EXIT_KEY 53
 # define CAM_KEY 8

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 14:48:13 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/03 11:05:44 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 14:49:45 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ static void	draw_pixel(t_engine *engine, int x, int y, t_hit *hit)
 	free(hit);
 }
 
-void	do_raytracing(t_engine *engine)
+void	do_raytracing(t_engine *engine, int x, int y)
 {
-	int		x;
-	int		y;
 	t_ray	*ray;
 	t_hit	*hit;
 
