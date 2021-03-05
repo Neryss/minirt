@@ -18,6 +18,8 @@ Example :
 R	1920	1080
 ```
 
+-------------
+
 ### Ambiant light
 
 Only one must be declared, if none is declared, a default black light will be used instead.
