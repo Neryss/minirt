@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 17:59:21 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 18:40:55 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 
 # define EXIT_KEY 53
 # define CAM_KEY 8
-
 
 typedef struct s_3dvector
 {
@@ -183,8 +182,8 @@ void		add_triangle(t_list **lst, char *file);
 void		add_cylinder(t_list **lst, char *file);
 void		add_square(t_list **lst, char *file);
 void		get_scene(t_engine *engine);
-void		init_headers(unsigned int *headers
-, t_engine *engine, int extrabytes);
+void		init_headers(unsigned int *headers,
+				t_engine *engine, int extrabytes);
 void		write_headers(int outfile, unsigned int *headers);
 void		get_save(t_engine *engine, char *filename);
 void		write_custom(int fd, unsigned int val);
