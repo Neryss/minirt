@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 13:12:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 14:46:00 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 18:14:47 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ void	*multi_raytracing(t_thread_data *thread_data)
 	int	y;
 
 	y = thread_data->from - 1;
-	while (++y < thread_data->to)
+	while (++y <= thread_data->to)
 	{
 		x = -1;
 		while (++x < thread_data->engine->size_x)
 		{
 			put_pxl(thread_data->engine, x, y, ft_rgbtohex(0, 0, 0));
-			do_raytracing(thread_data->engine);
-	printf("bite\n");
+			do_raytracing(thread_data->engine, x, y);
 		}
 	}
 	pthread_exit(NULL);
@@ -73,14 +72,10 @@ void	*render_scene_multi(t_engine *engine)
 
 void	render(t_engine *engine)
 {
-	if (engine->need_render)
-	{
-		mlx_clear_window(engine->mlx, engine->win);
-		render_scene_multi(engine);
-		mlx_put_image_to_window(engine->mlx, engine->win, engine->frame->img, 0, 0);
-		mlx_do_sync(engine->mlx);
-	}
-	engine->need_render = false;
+	mlx_clear_window(engine->mlx, engine->win);
+	render_scene_multi(engine);
+	mlx_put_image_to_window(engine->mlx, engine->win, engine->frame->img, 0, 0);
+	mlx_do_sync(engine->mlx);
 }
 
 #endif

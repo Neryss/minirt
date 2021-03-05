@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 14:48:13 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 14:49:45 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 18:07:43 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,14 @@ void	do_raytracing(t_engine *engine, int x, int y)
 	t_ray	*ray;
 	t_hit	*hit;
 
-	y = -1;
-	while (++y < engine->size_y)
+	ray = create_spe_ray(engine, x, y);
+	hit = closest_inter(engine, ray);
+	if (hit->dist < INFINITY)
 	{
-		x = -1;
-		while (++x < engine->size_x)
-		{
-			ray = create_spe_ray(engine, x, y);
-			hit = closest_inter(engine, ray);
-			if (hit->dist < INFINITY)
-			{
-				if (scalar(hit->normal, ray->direction) >= 0)
-					hit->normal = vectormultiply(hit->normal, -1);
-				handle_lights(engine, hit);
-			}
-			draw_pixel(engine, x, y, hit);
-			free(ray);
-		}
+		if (scalar(hit->normal, ray->direction) >= 0)
+			hit->normal = vectormultiply(hit->normal, -1);
+		handle_lights(engine, hit);
 	}
+	draw_pixel(engine, x, y, hit);
+	free(ray);
 }

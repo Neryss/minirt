@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 14:35:19 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/05 17:59:21 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ void		raytrace_cylinders(t_engine *engine, t_hit *hit, t_ray *ray);
 void		raytrace_square(t_engine *engine, t_hit *hit, t_ray *ray);
 void		normalize(t_3dvector *v1);
 void		change_cam(t_engine *engine);
-void		do_raytracing(t_engine *engine);
+void		do_raytracing(t_engine *engine, int x, int y);
 void		get_triangle_normal(t_triangle *triangle);
 void		set_hit_color(t_hit *hit);
 void		set_res(t_resolve *res, double t, t_ray ray, t_cylinder cy);
