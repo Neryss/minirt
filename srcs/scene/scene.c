@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/03 13:04:53 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:50:38 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	add_light(t_list **lst, char *file)
 		close_minirt("While parsing the scene(light)\n");
 	light->pos = parse_vector(&file);
 	light->intensity = ft_atof(file);
-	printf("i : %f\n", light->intensity);
 	if (!check_intensity(light->intensity))
 		close_minirt("Light intensity out of bounds [0, 1]");
 	file += ft_atof_len(file);

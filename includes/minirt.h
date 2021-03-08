@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 10:37:11 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:53:59 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 # include <stdbool.h>
 # include "../libft/libft.h"
 
+# define DEBUG 0
+
 # ifdef BONUS
-#	define MULTITHREADING
 #	define MAX_THREAD 4
 #	define CY_CAPS 1
 # else

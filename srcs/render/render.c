@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:36:26 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 10:44:14 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:47:27 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MULTITHREADING
+#ifndef BONUS
 # include "../includes/minirt.h"
 
 void	*render_thread(t_thread_data *thread)

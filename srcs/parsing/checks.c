@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:19:09 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/03 13:06:33 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:02:31 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ int	check_caps_args(t_engine *engine)
 
 void	check_args(int argc, char **argv)
 {
+	int	tmp;
+
 	if (argc != 2 && argc != 3)
 		close_minirt("Wrong numbers of arguments\n");
 	if (!ft_endwith(argv[1], ".rt"))
 		close_minirt("Bad file format\n");
-	if (open(argv[1], O_DIRECTORY) != -1)
+	tmp = open(argv[1], O_DIRECTORY);
+	if (tmp != -1)
 		close_minirt("Invalid file descriptor");
-	if (open(argv[1], O_RDONLY) == -1)
-		close_minirt("During file opening");
+	close(tmp);
 }
 
 int	check_resolution(t_engine *engine, int save)
@@ -52,8 +54,8 @@ int	check_resolution(t_engine *engine, int save)
 	int	max_y;
 
 	mlx_get_screen_size(engine->mlx, &max_x, &max_y);
-	printf("x: %d\n", engine->size_x);
-	printf("y: %d\n", engine->size_y);
+	if (DEBUG)
+		printf("x: %d, y: %d\n", engine->size_x, engine->size_y);
 	if (!save)
 	{
 		if (engine->size_x <= 0 || engine->size_y <= 0)

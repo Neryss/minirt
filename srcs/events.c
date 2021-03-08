@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:28:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:48:01 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:50:25 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	exit_hook(t_engine *engine)
 
 int	key_press(int key, t_engine *engine)
 {
-	printf("key is : %d\n", key);
+	if (DEBUG)
+		printf("key is : %d\n", key);
 	if (key == EXIT_KEY)
 	{
 		clean_close(engine);

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:53:06 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 15:58:50 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:03:45 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static char	**read_map(char *path_to_map)
 	char	**array;
 
 	fd = open(path_to_map, O_RDONLY);
+	if (fd == -1)
+		close_minirt("during file opening");
 	array = ft_read_file(fd);
 	close(fd);
 	return (array);

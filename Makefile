@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/03/03 15:58:16 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/08 10:57:01 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ _IWHITE=\033[47m
 
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iminilibx -g3
+CFLAGS = -Wall -Wextra -Werror -Iminilibx -g -fsanitize=address
 LDFLAGS = -lmlx -lm -framework OpenGL -framework AppKit -L. -lft
 LIBC = ar rcs
 SRCS =	srcs/utils/utils.c srcs/utils/cylinder_utils.c srcs/utils/utils2.c srcs/utils/cylinder_utils2.c \
@@ -50,7 +50,7 @@ SRCS =	srcs/utils/utils.c srcs/utils/cylinder_utils.c srcs/utils/utils2.c srcs/u
 		
 OBJS = $(SRCS:.c=.o)
 
-%.o: %.c
+%.o: %.c ./includes/minirt.h
 	@printf "$(_CYAN) [+] $(_END) Compiling $(_BLUE)owo $(_END)$<\n" | tr "lr" "w"
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
@@ -70,12 +70,6 @@ $(NAME): $(OBJS)
 	@cp ./minilibx/libmlx.dylib ./
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS)
 	@printf " $(_GREEN)=>$(_END) Fwinished uwu!\n"
-
-	$(MAKE) -C ./libft
-	$(MAKE) -C ./minilibx
-	cp ./libft/libft.a ./
-	cp ./minilibx/libmlx.dylib ./
-	$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(SRCS)
 
 test: $(OBJS)
 	$(MAKE) -C ./libft

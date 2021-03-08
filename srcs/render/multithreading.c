@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 13:12:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 10:35:51 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:48:27 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef MULTITHREADING
+#ifdef BONUS
 # include "../../includes/minirt.h"
 # include <pthread.h>
 
@@ -39,7 +39,8 @@ void	*wait_thread(pthread_t *tid, long nproc, t_thread_data *thread)
 	i = 0;
 	while (i < nproc)
 		pthread_join(tid[i++], NULL);
-	printf("all thread created\n");
+	if (DEBUG)
+		printf("all thread created\n");
 	free(tid);
 	free(thread);
 	return (NULL);
@@ -68,7 +69,8 @@ void	*render_scene_multi(t_engine *engine)
 		thread[i].to = to;
 		if (pthread_create(&id[i], NULL, (void *)multi_raytracing, &thread[i]))
 			close_minirt("Thread creation failed :/");
-		printf("Thread %d created\n", i);
+		if (DEBUG)
+			printf("Thread %d created\n", i);
 	}
 	return (wait_thread(id, MAX_THREAD, thread));
 }
