@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:44:00 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 13:12:35 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:37:37 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,27 @@ t_3dvector	return_normal(t_3dvector point, t_cylinder cy)
 							get_normalized(cy.rot)))), point));
 }
 
-double	calc_b(t_ray ray, t_resolve *res)
+double	calc_b(t_ray ray, t_cyresolve *res)
 {
 	return (2 * scalar(vectorcross(ray.direction, vectorminus(res->t, res->b)),
 			vectorcross(vectorminus(ray.origin, res->b),
 					vectorminus(res->t, res->b))));
 }
 
-double	calc_a(t_ray ray, t_resolve *res)
+double	calc_a(t_ray ray, t_cyresolve *res)
 {
 	return (scalar(vectorcross(ray.direction, vectorminus(res->t, res->b)),
 			vectorcross(ray.direction, vectorminus(res->t, res->b))));
 }
 
-void	set_hit(t_hit *hit, t_ray ray, t_resolve res)
+void	set_hit(t_hit *hit, t_ray ray, t_cyresolve res)
 {
 	hit->dist = res.tmin;
 	hit->pos = vectoradd(ray.origin, vectormultiply(ray.direction, res.tmin));
 	hit->normal = get_normalized(res.normal);
 }
 
-void	init_res(t_resolve *res, t_cylinder cy)
+void	init_res(t_cyresolve *res, t_cylinder cy)
 {
 	res->tmin = INFINITY;
 	res->b = vectorminus(cy.pos,

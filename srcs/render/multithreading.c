@@ -6,11 +6,11 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 13:12:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 18:38:32 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:35:51 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifdef BONUS
+#ifdef MULTITHREADING
 # include "../../includes/minirt.h"
 # include <pthread.h>
 

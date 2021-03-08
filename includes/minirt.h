@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 18:40:55 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 10:37:11 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,16 @@
 # include <stdbool.h>
 # include "../libft/libft.h"
 
+# ifdef BONUS
+#	define MULTITHREADING
+#	define MAX_THREAD 4
+#	define CY_CAPS 1
+# else
+#	define CY_CAPS 0
+# endif
+
 # define ALBEDO 0.4
 # define EPSILON 0.001
-# define MAX_THREAD 2
 
 # define EXIT_KEY 53
 # define CAM_KEY 8
@@ -164,13 +171,13 @@ typedef struct s_handler
 	double		normal_dot_light;
 }				t_handler;
 
-typedef struct s_resolve
+typedef struct s_cyresolve
 {
 	double		tmin;
 	t_3dvector	t;
 	t_3dvector	b;
 	t_3dvector	normal;
-}				t_resolve;
+}				t_cyresolve;
 
 void		init_engine(t_engine *engine);
 void		add_sphere(t_list **lst, char *file);
@@ -204,9 +211,9 @@ void		change_cam(t_engine *engine);
 void		do_raytracing(t_engine *engine, int x, int y);
 void		get_triangle_normal(t_triangle *triangle);
 void		set_hit_color(t_hit *hit);
-void		set_res(t_resolve *res, double t, t_ray ray, t_cylinder cy);
-void		init_res(t_resolve *res, t_cylinder cy);
-void		set_hit(t_hit *hit, t_ray ray, t_resolve res);
+void		set_res(t_cyresolve *res, double t, t_ray ray, t_cylinder cy);
+void		init_res(t_cyresolve *res, t_cylinder cy);
+void		set_hit(t_hit *hit, t_ray ray, t_cyresolve res);
 char		**get_map_info(char *path_to_map, t_engine *engine);
 double		getnorm2(t_3dvector v1);
 double		scalar(t_3dvector v1, t_3dvector v2);
@@ -214,8 +221,8 @@ double		ft_dmin(double a, double b);
 double		distance(t_3dvector p1, t_3dvector p2);
 double		ft_dmax(double a, double b);
 double		to_rad(double value);
-double		calc_a(t_ray ray, t_resolve *res);
-double		calc_b(t_ray ray, t_resolve *res);
+double		calc_a(t_ray ray, t_cyresolve *res);
+double		calc_b(t_ray ray, t_cyresolve *res);
 float		magnitude(t_3dvector a);
 int			start_init(char *map_path, t_engine *engine, int save);
 int			init_frame(t_engine *engine);
