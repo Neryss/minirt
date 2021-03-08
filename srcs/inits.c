@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:09:10 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/03 13:04:42 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:15:05 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ int	init_frame(t_engine *engine)
 	engine->frame->img = mlx_new_image(
 			engine->mlx, engine->size_x, engine->size_y);
 	engine->frame->addr = mlx_get_data_addr(engine->frame->img,
-			&engine->frame->bpp, &engine->frame->line_len, &engine->frame->endian);
+			&engine->frame->bpp, &engine->frame->line_len,
+			&engine->frame->endian);
 	if (!engine->frame->img || !engine->frame->addr)
 		close_minirt("During img setup\n");
 	return (1);

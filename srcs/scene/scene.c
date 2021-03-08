@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 10:50:38 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:27:08 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	get_scene(t_engine *engine)
 		if (check_lines(engine, i) || check_uniq(engine->file[i]))
 			;
 		else
-			close_minirt(ft_strjoin("Bad file formating at : \n"
-				, engine->file[i]));
+			close_minirt(ft_strjoin("Bad file formating at : \n",
+					engine->file[i]));
 		i++;
 	}
 }

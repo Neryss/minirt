@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 10:53:59 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:22:00 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,16 +214,19 @@ void		get_triangle_normal(t_triangle *triangle);
 void		set_hit_color(t_hit *hit);
 void		set_res(t_cyresolve *res, double t, t_ray ray, t_cylinder cy);
 void		init_res(t_cyresolve *res, t_cylinder cy);
+void		calc_things(double *a, double *b, t_ray ray, t_cyresolve *res);
 void		set_hit(t_hit *hit, t_ray ray, t_cyresolve res);
 char		**get_map_info(char *path_to_map, t_engine *engine);
 double		getnorm2(t_3dvector v1);
 double		scalar(t_3dvector v1, t_3dvector v2);
 double		ft_dmin(double a, double b);
 double		distance(t_3dvector p1, t_3dvector p2);
+double		intersect_caps(t_ray ray, t_cylinder cy, t_3dvector pos);
 double		ft_dmax(double a, double b);
 double		to_rad(double value);
 double		calc_a(t_ray ray, t_cyresolve *res);
 double		calc_b(t_ray ray, t_cyresolve *res);
+double		calc_c(t_ray ray, t_cylinder cy, t_3dvector t, t_3dvector b);
 float		magnitude(t_3dvector a);
 int			start_init(char *map_path, t_engine *engine, int save);
 int			init_frame(t_engine *engine);
@@ -251,8 +254,9 @@ t_rgb		add_rgb_rgb(t_rgb c1, t_rgb c2);
 t_rgb		mult_rgb_rgb(t_rgb r1, t_rgb r2);
 t_rgb		ft_get_rgb(char **line);
 
+t_3dvector	process_normal_cy(t_ray ray, t_3dvector normal);
+t_3dvector	calclanormalparceqttroplongue(t_cylinder cy, t_3dvector p);
 t_3dvector	set_ray_direction(t_engine *engine, t_camera cam, int x, int y);
-t_3dvector	process_normal(t_ray ray, t_3dvector normal);
 t_3dvector	return_normal(t_3dvector point, t_cylinder cy);
 t_3dvector	apply_rot(t_3dvector pos, t_3dvector dir, t_3dvector rot);
 t_3dvector	get_normalized(t_3dvector vector);

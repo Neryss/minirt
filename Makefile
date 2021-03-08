@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/03/08 10:57:01 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/08 11:23:38 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ CFLAGS = -Wall -Wextra -Werror -Iminilibx -g -fsanitize=address
 LDFLAGS = -lmlx -lm -framework OpenGL -framework AppKit -L. -lft
 LIBC = ar rcs
 SRCS =	srcs/utils/utils.c srcs/utils/cylinder_utils.c srcs/utils/utils2.c srcs/utils/cylinder_utils2.c \
-		srcs/utils/operations2.c srcs/utils/operations.c srcs/utils/rgb.c srcs/utils/utils3.c \
+		srcs/utils/operations2.c srcs/utils/operations.c srcs/utils/rgb.c srcs/utils/utils3.c srcs/utils/cylinder_utils3.c \
 		srcs/raytracing/raytrace_sphere.c srcs/raytracing/raytrace_triangle.c srcs/render/multithreading.c srcs/render/render.c \
 		srcs/raytracing/raytracing.c srcs/raytracing/raytrace_plane.c srcs/raytracing/raytrace_cylinder.c \
 		srcs/raytracing/raytrace_square.c srcs/raytracing/raytracing_utils.c \

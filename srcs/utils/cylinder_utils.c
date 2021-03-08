@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:44:00 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 10:37:37 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:42:01 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ t_3dvector	return_normal(t_3dvector point, t_cylinder cy)
 	return (vectorminus(vectoradd(cy.pos,
 				vectormultiply(get_normalized(cy.rot),
 					 scalar(vectorminus(point, cy.pos),
-							get_normalized(cy.rot)))), point));
+						get_normalized(cy.rot)))), point));
 }
 
 double	calc_b(t_ray ray, t_cyresolve *res)
 {
 	return (2 * scalar(vectorcross(ray.direction, vectorminus(res->t, res->b)),
 			vectorcross(vectorminus(ray.origin, res->b),
-					vectorminus(res->t, res->b))));
+				vectorminus(res->t, res->b))));
 }
 
 double	calc_a(t_ray ray, t_cyresolve *res)

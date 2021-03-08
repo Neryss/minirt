@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/12 14:48:13 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 18:07:43 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:26:02 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void	init_obj(t_handler *handler, t_hit *hit, t_engine *engine)
 {
 	handler->light = handler->list->content;
 	handler->color = create_rgb(0, 0, 0);
-	handler->ray = create_ray(hit->pos, vectorminus(handler->light->pos, hit->pos));
+	handler->ray = create_ray(hit->pos,
+			vectorminus(handler->light->pos, hit->pos));
 	handler->obs_hit = closest_inter(engine, handler->ray);
 }
 
@@ -43,7 +44,8 @@ void	handle_lights(t_engine *engine, t_hit *hit)
 		free(obj.obs_hit);
 		free(obj.ray);
 	}
-	hit->color = mult_rgb_rgb(add_rgb_rgb(mult_rgb_double(engine->scene->alight.color,
+	hit->color = mult_rgb_rgb(add_rgb_rgb(
+				mult_rgb_double(engine->scene->alight.color,
 					engine->scene->alight.intensity), obj.diffuse), hit->color);
 	set_hit_color(hit);
 }
@@ -52,7 +54,7 @@ static void	draw_pixel(t_engine *engine, int x, int y, t_hit *hit)
 {
 	put_pxl(engine, x, y, 0x000000);
 	put_pxl(engine, x, y, ft_rgbtohex(hit->color.r,
-		hit->color.g, hit->color.b));
+			hit->color.g, hit->color.b));
 	free(hit);
 }
 

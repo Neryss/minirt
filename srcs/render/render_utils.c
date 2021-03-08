@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 15:57:44 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/05 18:24:29 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 11:26:40 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	put_pxl(t_engine *engine, int x, int y, int color)
 	dst = engine->frame->addr
 		+ (y * engine->frame->line_len + x
 			* (engine->frame->bpp / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
