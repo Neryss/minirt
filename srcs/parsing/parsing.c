@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 12:53:06 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 13:32:39 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 16:28:27 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	get_resolution(char *line, t_engine *engine)
 	while (line[i] == ' ' || line[i] == '\t')
 		i++;
 	engine->size_y = ft_atoi(line + i);
-	i += ft_atoi_len(line + i);	
+	i += ft_atoi_len(line + i);
 	if (line[i] + 1)
 	{
 		while (line[i++])
