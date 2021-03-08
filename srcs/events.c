@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:28:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 11:15:28 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 12:32:49 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	exit_hook(t_engine *engine)
 {
 	(void)engine;
-	printf("closing program");
 	exit(0);
 }
 
