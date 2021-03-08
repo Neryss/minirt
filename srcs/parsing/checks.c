@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:19:09 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 11:02:31 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 14:39:08 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	check_args(int argc, char **argv)
 	int	tmp;
 
 	if (argc != 2 && argc != 3)
-		close_minirt("Wrong numbers of arguments\n");
+		close_minirt("Wrong numbers of arguments");
 	if (!ft_endwith(argv[1], ".rt"))
-		close_minirt("Bad file format\n");
+		close_minirt("Bad file format");
 	tmp = open(argv[1], O_DIRECTORY);
 	if (tmp != -1)
 		close_minirt("Invalid file descriptor");
@@ -59,7 +59,7 @@ int	check_resolution(t_engine *engine, int save)
 	if (!save)
 	{
 		if (engine->size_x <= 0 || engine->size_y <= 0)
-			close_minirt("Invalid resolution\n");
+			close_minirt("Invalid resolution");
 		if (engine->size_x > max_x)
 			engine->size_x = max_x;
 		if (engine->size_y > max_y)

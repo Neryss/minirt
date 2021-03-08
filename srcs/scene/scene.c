@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 11:27:08 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 14:47:26 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	add_light(t_list **lst, char *file)
 
 	light = malloc(sizeof(t_light));
 	if (!light)
-		close_minirt("While parsing the scene(light)\n");
+		close_minirt("While parsing the scene(light)");
 	light->pos = parse_vector(&file);
 	light->intensity = ft_atof(file);
 	if (!check_intensity(light->intensity))
@@ -28,7 +28,7 @@ void	add_light(t_list **lst, char *file)
 	light->color = ft_get_rgb(&file);
 	new = ft_lstnew(light);
 	if (!new)
-		close_minirt("While parsing the scene(light)\n");
+		close_minirt("While parsing the scene(light)");
 	ft_lstadd_back(lst, new);
 }
 
@@ -40,18 +40,17 @@ void	add_camera(t_list **lst, char *line)
 
 	camera = malloc(sizeof(t_camera));
 	if (!camera)
-		close_minirt("While parsing the scene(camera)\n");
+		close_minirt("While parsing the scene(camera)");
 	camera->pos = parse_vector(&line);
 	camera->rot = parse_vector(&line);
-	if (!check_normal(camera->rot))
-		close_minirt("Camera normal out of bounds [-1, 1]");
+	check_normal(camera->rot);
 	camera->fov = ft_atof(line);
 	if (!check_fov(camera->fov))
 		close_minirt("Camera fov out of bounds [0, 180]");
 	camera->id = id++;
 	new = ft_lstnew(camera);
 	if (!new)
-		close_minirt("While parsing the scene(camera)\n");
+		close_minirt("While parsing the scene(camera)");
 	ft_lstadd_back(lst, new);
 }
 
@@ -74,7 +73,7 @@ void	get_scene(t_engine *engine)
 		if (check_lines(engine, i) || check_uniq(engine->file[i]))
 			;
 		else
-			close_minirt(ft_strjoin("Bad file formating at : \n",
+			close_minirt(ft_strjoin("Bad file formating at : ",
 					engine->file[i]));
 		i++;
 	}

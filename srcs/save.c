@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:53:42 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/22 15:57:56 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 14:38:56 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	imgcpy(int fd, t_engine *engine)
 	{
 		buffer = malloc(engine->size_x * sizeof(int));
 		if (!buffer)
-			close_minirt("During malloc\n");
+			close_minirt("During malloc");
 		x = 0;
 		i = 0;
 		while (x < engine->size_x)

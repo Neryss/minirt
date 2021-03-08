@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 12:19:41 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/08 14:36:06 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,6 +192,7 @@ void		add_square(t_list **lst, char *file);
 void		get_scene(t_engine *engine);
 void		init_headers(unsigned int *headers,
 				t_engine *engine, int extrabytes);
+void		check_normal(t_3dvector vec);
 void		write_headers(int outfile, unsigned int *headers);
 void		get_save(t_engine *engine, char *filename);
 void		write_custom(int fd, unsigned int val);
@@ -240,7 +241,6 @@ int			call_render(t_engine *engine);
 int			imax(int a, int b);
 int			imin(int a, int b);
 bool		check_rgb(t_rgb c);
-bool		check_normal(t_3dvector nor);
 bool		check_fov(int fov);
 bool		check_intensity(double i);
 bool		check_lines(t_engine *engine, int i);
