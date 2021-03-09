@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/03/09 13:50:04 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/09 14:00:24 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,10 @@ SRCS =	srcs/utils/utils.c \
 		srcs/parsing/parsing.c \
 		srcs/parsing/checks.c \
 		srcs/parsing/getters.c \
+		srcs/parsing/check_parsing.c \
+		srcs/parsing/check_parsing2.c \
+		srcs/parsing/check_parsingutils.c \
+		srcs/parsing/check_parsingutils2.c \
 		srcs/scene/objects.c \
 		srcs/scene/scene.c \
 		srcs/scene/objects2.c\

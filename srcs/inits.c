@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:09:10 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/09 13:09:15 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 14:01:47 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	start_init(char *map_path, t_engine *engine, int save)
 {
 	engine->file = get_map_info(map_path, engine);
-	if (!check_resolution(engine, save))
+	if (!verify_resolution(engine, save))
 		return (-1);
 	if (!check_caps_args(engine))
 		close_minirt("Too many unique objects");

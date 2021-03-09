@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 14:36:06 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 14:08:28 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,7 @@ void		set_res(t_cyresolve *res, double t, t_ray ray, t_cylinder cy);
 void		init_res(t_cyresolve *res, t_cylinder cy);
 void		calc_things(double *a, double *b, t_ray ray, t_cyresolve *res);
 void		set_hit(t_hit *hit, t_ray ray, t_cyresolve res);
+void		check_line(char *line);
 char		**get_map_info(char *path_to_map, t_engine *engine);
 double		getnorm2(t_3dvector v1);
 double		scalar(t_3dvector v1, t_3dvector v2);
@@ -231,7 +232,14 @@ double		calc_c(t_ray ray, t_cylinder cy, t_3dvector t, t_3dvector b);
 float		magnitude(t_3dvector a);
 int			start_init(char *map_path, t_engine *engine, int save);
 int			init_frame(t_engine *engine);
-int			check_resolution(t_engine *engine, int save);
+int			verify_resolution(t_engine *engine, int save);
+int			is_id(char *str, char *id);
+int			need_3dvector(char **line);
+int			need_rgb(char **line);
+int			need_double(char **line);
+int			need_eol(char **line);
+int			need_int(char **line);
+int			need_space(char **line);
 int			check_caps_args(t_engine *engine);
 int			exit_hook(t_engine *engine);
 int			key_press(int key, t_engine *engine);
@@ -240,6 +248,16 @@ int			get_pixel_color(t_engine *engine, int x, int y);
 int			call_render(t_engine *engine);
 int			imax(int a, int b);
 int			imin(int a, int b);
+bool		ft_isspace(char c);
+bool		check_sphere(char *str);
+bool		check_plane(char *str);
+bool		check_square(char *str);
+bool		check_cylinder(char *str);
+bool		check_triangle(char *str);
+bool		check_light(char *str);
+bool		check_camera(char *str);
+bool		check_alight(char *str);
+bool		check_resolution(char *str);
 bool		check_rgb(t_rgb c);
 bool		check_fov(int fov);
 bool		check_intensity(double i);

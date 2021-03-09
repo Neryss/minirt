@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 14:47:26 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 14:07:34 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	get_scene(t_engine *engine)
 	i = 0;
 	while (engine->file[i])
 	{
+		check_line(engine->file[i]);
 		if (check_lines(engine, i) || check_uniq(engine->file[i]))
 			;
 		else

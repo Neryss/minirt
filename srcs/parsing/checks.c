@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:19:09 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 14:39:08 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 14:01:39 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	check_args(int argc, char **argv)
 	close(tmp);
 }
 
-int	check_resolution(t_engine *engine, int save)
+int	verify_resolution(t_engine *engine, int save)
 {
 	int	max_x;
 	int	max_y;
