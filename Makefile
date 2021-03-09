@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/03/09 13:35:29 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/09 13:39:31 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,11 +65,11 @@ rebonus:
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C ./libft
-	@$(MAKE) -C ./minilibx
+	#@$(MAKE) -C ./minilibx
 	@cp ./libft/libft.a ./
-	@cp ./minilibx/libmlx.dylib ./
+	#@cp ./minilibx/libmlx.dylib ./
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS)
-	@printf "$(_GREEN)[$(NAME)][DONE]$(_END) Fwinished uwu!\n"
+	@printf "$(_GREEN)[$(NAME)][DONE]$(_END) Fiwniwshed uwu!\n"
 
 test: $(OBJS)
 	@$(MAKE) -C ./libft
