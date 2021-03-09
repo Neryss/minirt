@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/03/08 12:30:44 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/09 12:22:38 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ bonus: rebonus
 bonus: all
 
 rebonus:
-	@$(RM) srcs/render/*.o
+	@$(RM) srcs/render/*.o srcs/raytracing/raytrace_cylinder.o
 
 $(NAME): $(OBJS)
 	@$(MAKE) -C ./libft
@@ -89,12 +89,12 @@ clean:
 	@printf "$(_RED) [-] $(_END) Cleaned libft, minilibx and objects\n" | tr "lr" "w"
 
 fclean: 
-	@rm -f $(NAME)
-	@rm -rf $(OBJS)
+	rm -f $(NAME)
+	rm -rf $(OBJS)
 	@rm -f libmlx.a
 	@rm -f libft.a
-	@$(MAKE) fclean -C ./libft
-	@$(MAKE) clean -C ./minilibx
+	$(MAKE) fclean -C ./libft
+	$(MAKE) clean -C ./minilibx
 	@printf "$(_CYAN) [+] $(_END) $(_UNDER)$(_GREEN)Everything clean now uwu$(_END)\n" | tr "lr" "w"
 
 norme:
