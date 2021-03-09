@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 13:12:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 10:48:27 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/09 15:16:21 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,11 @@ void	*wait_thread(pthread_t *tid, long nproc, t_thread_data *thread)
 
 	i = 0;
 	while (i < nproc)
+	{
 		pthread_join(tid[i++], NULL);
-	if (DEBUG)
-		printf("all thread created\n");
+		if (DEBUG)
+			printf("all thread created\n");		
+	}
 	free(tid);
 	free(thread);
 	return (NULL);
