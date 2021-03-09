@@ -5,4 +5,4 @@ miniRT
 *.dylib
 *.swiftdoc
 *.swiftmodule
-.bmp
+*.bmp
