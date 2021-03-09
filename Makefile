@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/03/09 13:10:17 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/09 13:35:29 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ SRCS =	srcs/utils/utils.c srcs/utils/cylinder_utils.c srcs/utils/utils2.c srcs/u
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c ./includes/minirt.h
-	@printf "$(_CYAN) [+] $(_END) Compiling $(_BLUE)owo $(_END)$<\n" | tr "lr" "w"
+	@printf "$(_PURPLE)[$(NAME)] $(_END)$(_CYAN)[+] $(_END)Compiling $(_BLUE)owo$(_END) | $(_CYAN)$<$(_END)\n" | tr "lr" "w"
 	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 all: $(NAME)
@@ -69,13 +69,13 @@ $(NAME): $(OBJS)
 	@cp ./libft/libft.a ./
 	@cp ./minilibx/libmlx.dylib ./
 	@$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS)
-	@printf " $(_GREEN)=>$(_END) Fwinished uwu!\n"
+	@printf "$(_GREEN)[$(NAME)][DONE]$(_END) Fwinished uwu!\n"
 
 test: $(OBJS)
-	$(MAKE) -C ./libft
-	$(MAKE) -C ./minilibx
-	cp ./libft/libft.a ./
-	cp ./minilibx/libmlx.dylib ./
+	@$(MAKE) -C ./libft
+	@$(MAKE) -C ./minilibx
+	@cp ./libft/libft.a ./
+	@cp ./minilibx/libmlx.dylib ./
 	$(CC) $(CFLAGS) $(LDFLAGS) -o $(NAME) $(OBJS) && ./$(NAME)
 
 re: fclean
@@ -89,13 +89,13 @@ clean:
 	@printf "$(_RED) [-] $(_END) Cleaned libft, minilibx and objects\n" | tr "lr" "w"
 
 fclean: 
-	rm -f $(NAME)
-	rm -rf $(OBJS)
+	@rm -f $(NAME)
+	@rm -rf $(OBJS)
 	@rm -f libmlx.a
 	@rm -f libft.a
-	$(MAKE) fclean -C ./libft
-	$(MAKE) clean -C ./minilibx
-	@printf "$(_CYAN) [+] $(_END) $(_UNDER)$(_GREEN)Everything clean now uwu$(_END)\n" | tr "lr" "w"
+	@$(MAKE) fclean -C ./libft
+	@$(MAKE) clean -C ./minilibx
+	@printf "$(_CYAN)[$(NAME)] [-] $(_END)$(_UNDER)$(_GREEN)Everything clean now uwu$(_END)\n" | tr "lr" "w"
 
 norme:
 	@norminettev2 srcs/ includes libft/
