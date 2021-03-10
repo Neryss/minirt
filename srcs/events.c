@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 13:28:47 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/09 13:01:38 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 16:04:02 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,5 @@ void	change_cam(t_engine *engine)
 		change_cam(engine);
 	}
 	else
-		close_minirt("Error during camera alloc");
+		close_minirt("No camera");
 }
