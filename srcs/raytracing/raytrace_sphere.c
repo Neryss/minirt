@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 14:03:27 by ckurt             #+#    #+#             */
-/*   Updated: 2021/02/18 12:48:08 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/10 13:50:14 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ bool	inter_sphere(const t_ray ray, const t_sphere sphere, t_hit *hit)
 	hit->dist = ft_dmin(t1, t2);
 	hit->pos = vectoradd(ray.origin, vectormultiply(ray.direction, t2));
 	hit->normal = get_normalized(vectorminus(hit->pos, sphere.pos));
+	if (scalar(hit->normal, ray.direction) >= 0)
+		hit->normal = vectormultiply(hit->normal, -1);
 	hit->pos = vectoradd(hit->pos, vectormultiply(hit->normal, 0.001));
 	return (true);
 }
