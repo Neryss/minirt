@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/10 12:43:18 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/10 14:55:21 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 12:20:02 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_3dvector	apply_rot(t_3dvector pos, t_3dvector dir, t_3dvector rot)
 	else if (!(dir.x == 0 && dir.y != 0 && dir.z == 0))
 	{
 		c1 = calculate_rot(&c2, &c3, rot, dir);
-		pos = get_vector(scalar(c1, pos), scalar(c2, pos), pos.z);
+		pos = get_vector(scalar(c1, pos), scalar(c2, pos), scalar(c3, pos));
 	}
 	return (pos);
 }
