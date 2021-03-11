@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:12:58 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 14:36:43 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 13:15:09 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ void	add_cylinder(t_list **lst, char *file)
 		close_minirt("Wile parsing the scene (cylinder)");
 	cy->pos = parse_vector(&file);
 	cy->rot = parse_vector(&file);
+	normalize(&cy->rot);
 	check_normal(cy->rot);
-	if (!check_rot(cy->rot))
-		close_minirt("Invalid rotation");
 	cy->radius = ft_atof(file) / 2;
 	file += ft_atof_len(file) + 1;
 	cy->height = ft_atof(file);

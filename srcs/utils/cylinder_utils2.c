@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 12:57:22 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 12:24:03 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 12:43:36 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ void	calc_things(double *a, double *b, t_ray ray, t_cyresolve *res)
 
 double	calc_c(t_ray ray, t_cylinder cy, t_3dvector t, t_3dvector b)
 {
-	return (scalar(vectorcross(vectorminus(ray.origin, b), vectorminus(t, b)),
-			vectorcross(vectorminus(ray.origin, b), vectorminus(t, b)))
-		- (cy.radius * cy.radius * scalar(vectorminus(t, b),
+	t_3dvector	a;
+
+	a = vectorcross(vectorminus(ray.origin, b), vectorminus(t, b));
+	return (scalar(a, a) - (cy.radius * cy.radius * scalar(vectorminus(t, b),
 				vectorminus(t, b))));
 }
 

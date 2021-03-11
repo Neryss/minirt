@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/16 14:07:42 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 11:22:13 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 13:15:34 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ void	infinite_cylinder(t_ray ray, t_cylinder cy, t_cyresolve *res)
 	inf.c = calc_c(ray, cy, res->t, res->b);
 	if (pow(inf.b, 2) - 4 * inf.a * inf.c > EPSILON)
 	{
-		inf.t = (-inf.b - sqrt(pow(inf.b, 2) - 4
-					* inf.a * inf.c)) / (2 * inf.a);
+		inf.t = (-inf.b - sqrt(pow(inf.b, 2) - 4 * inf.a * inf.c))
+			/ (2 * inf.a);
 		if (inf.t < EPSILON)
-			inf.t = (-inf.b + sqrt(pow(inf.b, 2) - 4
-						* inf.a * inf.c)) / (2 * inf.a);
+			inf.t = (-inf.b + sqrt(pow(inf.b, 2) - 4 * inf.a * inf.c))
+				/ (2 * inf.a);
 		inf.p = vectoradd(ray.origin, vectormultiply(ray.direction, inf.t));
 		inf.p = apply_rot(inf.p, cy.rot, get_vector(0, 1, 0));
 		res->b = apply_rot(res->b, cy.rot, get_vector(0, 1, 0));
@@ -57,7 +57,7 @@ void	infinite_cylinder(t_ray ray, t_cylinder cy, t_cyresolve *res)
 		{
 			res->tmin = inf.t;
 			inf.p = vectoradd(ray.origin, vectormultiply(ray.direction, inf.t));
-			res->normal = return_normal(inf.p, cy);
+			res->normal = calclanormalparceqttroplongue(cy, inf.p);
 		}
 		if (!CY_CAPS)
 			inf_cylinder_part2(inf, ray, res, cy);
