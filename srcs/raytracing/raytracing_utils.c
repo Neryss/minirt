@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/03 11:06:08 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 14:21:02 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 13:55:56 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ t_3dvector	set_ray_direction(t_engine *engine, t_camera cam, int x, int y)
 	return (pixel);
 }
 
-t_ray	*create_spe_ray(t_engine *engine, int x, int y)
+t_ray	create_spe_ray(t_engine *engine, int x, int y)
 {
-	t_ray	*ray;
+	t_ray	ray;
 
-	ray = create_ray(engine->camera->pos,
-			set_ray_direction(engine, *engine->camera, x, y));
+	ray = init_ray(engine, *engine->camera, x, y);
 	return (ray);
 }

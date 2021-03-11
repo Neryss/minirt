@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/09 14:21:05 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/11 14:05:10 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ void		add_triangle(t_list **lst, char *file);
 void		add_cylinder(t_list **lst, char *file);
 void		add_square(t_list **lst, char *file);
 void		get_scene(t_engine *engine);
+
 void		init_headers(unsigned int *headers,
 				t_engine *engine, int extrabytes);
 void		check_normal(t_3dvector vec);
@@ -264,7 +265,7 @@ bool		check_intensity(double i);
 bool		check_lines(t_engine *engine, int i);
 bool		check_uniq(char *str);
 t_ray		*create_ray(t_3dvector pos, t_3dvector dir);
-t_ray		*create_spe_ray(t_engine *engine, int x, int y);
+t_ray		create_spe_ray(t_engine *engine, int x, int y);
 t_hit		*closest_inter(t_engine *engine, t_ray *ray);
 t_rgb		create_rgb(int r, int g, int b);
 t_rgb		mult_rgb_double(t_rgb rgb, double value);
@@ -272,6 +273,12 @@ t_rgb		add_rgb_rgb(t_rgb c1, t_rgb c2);
 t_rgb		mult_rgb_rgb(t_rgb r1, t_rgb r2);
 t_rgb		ft_get_rgb(char **line);
 
+t_ray		new_ray(t_3dvector origin, t_3dvector dir);
+t_ray		init_ray(t_engine *engine, t_camera cam, int x, int y);
+t_3dvector	vec3_rotatex(t_3dvector vec3, double alpha);
+t_3dvector	vec3_rotatey(t_3dvector vec3, double beta);
+t_3dvector	vec3_rotatez(t_3dvector vec3, double gamma);
+t_3dvector	vec3_rotatexyz(t_3dvector vec3, t_3dvector ovec3);
 t_3dvector	process_normal_cy(t_ray ray, t_3dvector normal);
 t_3dvector	calclanormalparceqttroplongue(t_cylinder cy, t_3dvector p);
 t_3dvector	set_ray_direction(t_engine *engine, t_camera cam, int x, int y);

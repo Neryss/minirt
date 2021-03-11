@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/03/09 15:19:24 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/11 13:56:47 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,9 @@ SRCS =	srcs/utils/utils.c \
 		srcs/window.c \
 		srcs/inits.c \
 		srcs/save.c \
-		srcs/vector2.c
+		srcs/vector2.c \
+		srcs/camera/camera1.c \
+		srcs/camera/camera2.c 
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c ./includes/minirt.h
