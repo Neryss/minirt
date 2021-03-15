@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/15 10:03:12 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 11:15:37 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include "../libft/libft.h"
 
 # define DEBUG 1
+# define WIN_NAME "Xx_The-MiniRT-Of-Death_xX"
+
 
 # ifdef BONUS
 #  define MAX_THREAD 2

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/09 10:09:10 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/09 14:01:47 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 11:16:00 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	start_init(char *map_path, t_engine *engine, int save)
 		close_minirt("Too many unique objects");
 	engine->mlx = mlx_init();
 	engine->win = mlx_new_window(
-			engine->mlx, engine->size_x, engine->size_y, map_path);
+			engine->mlx, engine->size_x, engine->size_y, WIN_NAME);
 	get_scene(engine);
 	if (!engine->mlx || !engine->win)
 		close_minirt("During mlx init");
