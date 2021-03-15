@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/22 16:45:13 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/08 14:37:54 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 10:02:52 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,13 @@ bool	check_fov(int fov)
 bool	check_intensity(double i)
 {
 	if (i < 0 || i > 1)
+		return (false);
+	return (true);
+}
+
+bool	check_vector(t_3dvector v, double a, double b)
+{
+	if ((v.x < a || v.x > b) || (v.y < a || v.y > b) || (v.z < a || v.z > b))
 		return (false);
 	return (true);
 }

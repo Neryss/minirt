@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 10:46:46 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/11 14:03:17 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 10:07:57 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	add_camera(t_list **lst, char *line)
 	camera->fov = ft_atof(line);
 	if (!check_fov(camera->fov))
 		close_minirt("Camera fov out of bounds [0, 180]");
+	if (!check_vector(camera->rot, -1, 1))
+		close_minirt("Rotation out of range [-1, 1]");
 	camera->id = id++;
 	new = ft_lstnew(camera);
 	if (!new)

@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/11 13:44:27 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/11 14:48:04 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 09:50:23 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ t_ray	init_ray(t_engine *engine, t_camera cam, int x, int y)
 		*tan((cam.fov / 2) *(M_PI / 180));
 	res.y = (1 - (2 * ((y + .5) / size_y))) * tan((cam.fov / 2) *(M_PI / 180));
 	res.z = 1;
-	return (new_ray(cam.pos, vec3_rotatexyz(res, cam.rot)));
+	res = vec3_rotatexyz(res, cam.rot);
+	return (new_ray(cam.pos, res));
 }

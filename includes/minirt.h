@@ -6,7 +6,7 @@
 /*   By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/08 10:32:43 by ckurt             #+#    #+#             */
-/*   Updated: 2021/03/11 14:05:10 by ckurt            ###   ########lyon.fr   */
+/*   Updated: 2021/03/15 10:03:12 by ckurt            ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,6 +249,7 @@ int			get_pixel_color(t_engine *engine, int x, int y);
 int			call_render(t_engine *engine);
 int			imax(int a, int b);
 int			imin(int a, int b);
+bool		check_vector(t_3dvector v, double a, double b);
 bool		ft_isspace(char c);
 bool		check_sphere(char *str);
 bool		check_plane(char *str);
