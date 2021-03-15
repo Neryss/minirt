@@ -6,7 +6,7 @@
 #    By: ckurt <ckurt@student.42lyon.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/02/08 10:31:23 by ckurt             #+#    #+#              #
-#    Updated: 2021/03/15 12:04:13 by ckurt            ###   ########lyon.fr    #
+#    Updated: 2021/03/15 12:37:40 by ckurt            ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ _IWHITE=\033[47m
 
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -Iminilibx -O3 -fno-builtin -g
+CFLAGS = -Wall -Wextra -Werror -Iminilibx -O3 -fno-builtin
 LDFLAGS = -lmlx -lm -framework OpenGL -framework AppKit -L. -lft
 LIBC = ar rcs
 SRCS =	srcs/utils/utils.c \
@@ -120,6 +120,7 @@ fclean:
 	@rm -f $(NAME)
 	@rm -rf $(OBJS)
 	@rm -f libmlx.a
+	@rm -rf libmlx.dylib
 	@rm -f libft.a
 	@$(MAKE) fclean -C ./libft
 	@$(MAKE) clean -C ./minilibx
